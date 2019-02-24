@@ -8,8 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- * @author Stefan Bratić cobrijani@gmail.com
- * Created on 9/14/2017.
  * Wrapper around {@link ConditionExpression} defining source type
  */
 @Getter
@@ -25,7 +23,7 @@ public class ConditionExpressionDTO {
     /**
      * Defined from which sources condition expression comes
      */
-    public static enum SourceType {
+    public enum SourceType {
         BASE,
         FILTER,
         REDUCTION

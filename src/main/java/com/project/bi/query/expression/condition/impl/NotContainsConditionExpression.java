@@ -5,10 +5,6 @@ import com.project.bi.query.expression.condition.CollectionConditionExpression;
 
 import java.util.stream.Collectors;
 
-/**
- * @author Stefan Bratić cobrijani@gmail.com
- * Created on 9/26/2017.
- */
 public class NotContainsConditionExpression extends CollectionConditionExpression {
 
 
@@ -19,46 +15,28 @@ public class NotContainsConditionExpression extends CollectionConditionExpressio
      */
     @Override
     public String interpret(String connectionName) {
-        StringBuilder str = new StringBuilder();
-        if(getFeatureName()!=null) {
-        str.append(getFeatureName());
-        str.append(" NOT IN (");
-        String values = getValues().stream()
-                .map(SQLUtil::preProcessValue)
-                .collect(Collectors.joining(","));
+        return interpret();
+    }
 
-        if (values == "") {
-			values=null;
-		}
-        
-        str.append(values)
-                .append(")");
-        
+    @Override
+    public String interpret() {
+        StringBuilder str = new StringBuilder();
+        if (getFeatureName() != null) {
+            str.append(getFeatureName());
+            str.append(" NOT IN (");
+            String values = getValues().stream()
+                    .map(SQLUtil::preProcessValue)
+                    .collect(Collectors.joining(","));
+
+            if ("".equals(values)) {
+                values = null;
+            }
+
+            str.append(values)
+                    .append(")");
+
         }
 
         return str.toString();
     }
-
-	@Override
-	public String interpret() {
-		// TODO Auto-generated method stub
-		StringBuilder str = new StringBuilder();
-        if(getFeatureName()!=null) {
-        str.append(getFeatureName());
-        str.append(" NOT IN (");
-        String values = getValues().stream()
-                .map(SQLUtil::preProcessValue)
-                .collect(Collectors.joining(","));
-
-        if (values == "") {
-			values=null;
-		}
-        
-        str.append(values)
-                .append(")");
-        
-        }
-
-        return str.toString();
-	}
 }

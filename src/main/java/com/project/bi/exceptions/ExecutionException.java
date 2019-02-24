@@ -4,8 +4,6 @@ import com.project.bi.general.Executor;
 
 /**
  * Exception that occurs during execution of {@link Executor}
- *
- * @author Sbratic
  */
 public class ExecutionException extends FlairCommonsExceptions {
 

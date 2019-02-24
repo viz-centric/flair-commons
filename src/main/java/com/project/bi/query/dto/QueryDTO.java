@@ -3,7 +3,6 @@ package com.project.bi.query.dto;
 import com.project.bi.general.Interpretable;
 import com.project.bi.query.expression.condition.ConditionExpression;
 import com.project.bi.query.expression.condition.impl.AndConditionExpression;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,8 +12,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * @author Stefan Bratić cobrijani@gmail.com
- * Created on 8/10/2017.
  * Data transfer object that used to transfer query data between flair-bi and fbiengine
  */
 @Getter
@@ -35,46 +32,9 @@ public class QueryDTO implements Interpretable {
 
     private boolean metaRetrieved;
 
+    @Deprecated
     public String interpret(String connectionName) {
-        StringBuilder builder = new StringBuilder();
-
-        builder.append("SELECT ")
-                .append(distinct ? "DISTINCT " : "")
-                .append(fields.isEmpty() ? "*" : fields.stream().filter(s-> s!=null).collect(Collectors.joining(",")))
-                .append(" FROM ")
-                .append(source);
-
-        ConditionExpression where = mergeConditionExpression();
-
-        if (null != where) {
-            builder.append(" WHERE ")
-                    .append(where.interpret(connectionName));
-        }
-
-        if (!groupBy.isEmpty()) {
-            builder
-                    .append(" GROUP BY ")
-                    .append(groupBy.stream().filter(s-> s!=null).collect(Collectors.joining(",")));
-
-        }
-
-        if (!orders.isEmpty()) {
-            builder.append(" ORDER BY ")
-                    .append(orders.stream().filter(s-> s!=null).map(SortDTO::interpret).collect(Collectors.joining(",")));
-
-        }
-
-        if (null != limit && !"Oracle-connection".equalsIgnoreCase(connectionName)) {
-            builder.append(" LIMIT ")
-                    .append(limit);
-        }
-        else if(null != limit) {
-        	builder.append(" FETCH NEXT "+limit+" ROWS ONLY ");
-        }
-        
-
-
-        return builder.toString();
+        return interpret();
     }
 
 
@@ -101,7 +61,6 @@ public class QueryDTO implements Interpretable {
 
 	@Override
 	public String interpret() {
-		// TODO Auto-generated method stub
 		StringBuilder builder = new StringBuilder();
 
         builder.append("SELECT ")

@@ -1,6 +1,3 @@
-/**
- *
- */
 package com.project.bi.query.dto;
 
 import lombok.AllArgsConstructor;
@@ -8,9 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- * @author Harry Potter
- */
 @Getter
 @Setter
 @NoArgsConstructor

@@ -5,10 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- * @author Stefan Bratić cobrijani@gmail.com
- *         Created on 9/12/2017.
- */
 @Getter
 @Setter
 @AllArgsConstructor
