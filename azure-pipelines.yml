@@ -1,0 +1,39 @@
+pool:
+  vmImage: 'Ubuntu 16.04'
+
+trigger:
+  # batch: true
+  branches:
+    include:
+    - master
+    - feature/*
+    - bug/*
+
+pr:
+  branches:
+    include:
+    - master
+
+variables:
+
+steps:
+- checkout: self
+  persistCredentials: true
+
+- task: Maven@3
+  inputs:
+    mavenPomFile: 'pom.xml'
+    mavenOptions: '-Xmx3072m'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.8'
+    jdkArchitectureOption: 'x64'
+    publishJUnitResults: false
+    testResultsFiles: '**/TEST-*.xml'
+    goals: 'package'
+  displayName: 'Test & Build the artifact'
+
+- script: |
+    ls -ltrha target
+    ls -ltrha
+  displayName: 'Checking build'
+
