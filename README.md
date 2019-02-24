@@ -1,4 +1,4 @@
-[![Build Status](https://dev.azure.com/VizCentric/Flair%20BI/_apis/build/status/viz-centric.flair-commons?branchName=master)](https://dev.azure.com/VizCentric/Flair%20BI/_build/latest?definitionId=1&branchName=master)
+[![Build Status](https://dev.azure.com/VizCentric/Flair%20BI/_apis/build/status/viz-centric.flair-commons?branchName=master)](https://dev.azure.com/VizCentric/Flair%20BI/_build/latest?definitionId=1&branchName=master) [![com.project.bi:project-bi-common package in flair-commons feed in Azure Artifacts](https://feeds.dev.azure.com/VizCentric/_apis/public/Packaging/Feeds/d62c60be-25b2-465f-9bf0-8c6406fc89ff/Packages/f6c17ac6-8157-49c2-ba21-0c0f02b78335/Badge)](https://dev.azure.com/VizCentric/Flair BI/_packaging?_a=package&feed=d62c60be-25b2-465f-9bf0-8c6406fc89ff&package=f6c17ac6-8157-49c2-ba21-0c0f02b78335&preferRelease=true)
 # Flair Commons
 
 This repository is common for all java based flair applications which share code. Its a maven based project which is used as a dependency in the other projects.
