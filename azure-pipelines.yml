@@ -14,8 +14,6 @@ pr:
     include:
     - master
 
-variables:
-
 steps:
 - checkout: self
   persistCredentials: true
