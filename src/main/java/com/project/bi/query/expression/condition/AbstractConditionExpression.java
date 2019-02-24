@@ -5,10 +5,6 @@ import lombok.Setter;
 
 import java.io.Serializable;
 
-/**
- * @author Stefan Bratić cobrijani@gmail.com
- * Created on 9/12/2017.
- */
 @Getter
 @Setter
 public abstract class AbstractConditionExpression implements ConditionExpression,

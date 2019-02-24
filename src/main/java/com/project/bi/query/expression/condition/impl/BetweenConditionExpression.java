@@ -7,10 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- * @author Stefan Bratić cobrijani@gmail.com
- * Created on 9/12/2017.
- */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -29,20 +25,16 @@ public class BetweenConditionExpression extends SimpleConditionExpression {
      */
     @Override
     public String interpret(String connectionName) {
-    	if(getFeatureName()==null) {
-    		return "";
-    	}
-        return getFeatureName() + " BETWEEN " + SQLUtil.preProcessValue(getValue()) + " AND " + SQLUtil.preProcessValue(getSecondValue());
+        return interpret();
     }
 
 
-	@Override
-	public String interpret() {
-		// TODO Auto-generated method stub
-		if(getFeatureName()==null) {
-    		return "";
-    	}
-        
-		return getFeatureName() + " BETWEEN " + SQLUtil.preProcessValue(getValue()) + " AND " + SQLUtil.preProcessValue(getSecondValue());
-	}
+    @Override
+    public String interpret() {
+        if (getFeatureName() == null) {
+            return "";
+        }
+
+        return getFeatureName() + " BETWEEN " + SQLUtil.preProcessValue(getValue()) + " AND " + SQLUtil.preProcessValue(getSecondValue());
+    }
 }

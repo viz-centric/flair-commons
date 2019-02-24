@@ -2,8 +2,6 @@ package com.project.bi.general;
 
 /**
  * Interface that describes Abstract factory pattern
- *
- * @author Sbratic
  */
 public interface AbstractFactory {
 

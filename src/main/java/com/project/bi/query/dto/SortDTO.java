@@ -7,9 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- * @author Stefan Bratić cobrijani@gmail.com
- * Created on 9/29/2017.
- * <p>
  * Holds data related to sorting
  */
 @Getter
@@ -50,8 +47,7 @@ public class SortDTO implements Interpretable {
 
 	@Override
 	public String interpret(String connectionName) {
-		// TODO Auto-generated method stub
-		 return featureName + " " + direction.getValue();
+        return interpret();
 	}
 
 	

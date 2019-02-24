@@ -2,10 +2,6 @@ package com.project.bi.exceptions;
 
 import java.security.PrivilegedActionException;
 
-/**
- * @author Stefan Bratić cobrijani@gmail.com
- *         Created on 9/27/2017.
- */
 public class FlairCommonsExceptions extends Exception{
     /**
      * Constructs a new exception with {@code null} as its detail message.

@@ -7,10 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- * @author Stefan Bratić cobrijani@gmail.com
- * Created on 9/12/2017.
- */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -28,10 +24,7 @@ public class CompareConditionExpression extends SimpleConditionExpression {
      */
     @Override
     public String interpret(String connectionName) {
-    	String q="";
-    	if(getFeatureName()!=null)
-        q= getFeatureName() + " " + SQLUtil.getSQLComparatorTypeSymbol(comparatorType) + " " + SQLUtil.preProcessValue(getValue());
-    	return q;
+        return interpret();
     }
 
     public enum ComparatorType {
@@ -54,12 +47,11 @@ public class CompareConditionExpression extends SimpleConditionExpression {
         }
     }
 
-	@Override
-	public String interpret() {
-		// TODO Auto-generated method stub
-		String q="";
-    	if(getFeatureName()!=null)
-        q= getFeatureName() + " " + SQLUtil.getSQLComparatorTypeSymbol(comparatorType) + " " + SQLUtil.preProcessValue(getValue());
-    	return q;
-	}
+    @Override
+    public String interpret() {
+        String q = "";
+        if (getFeatureName() != null)
+            q = getFeatureName() + " " + SQLUtil.getSQLComparatorTypeSymbol(comparatorType) + " " + SQLUtil.preProcessValue(getValue());
+        return q;
+    }
 }
