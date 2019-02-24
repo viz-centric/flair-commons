@@ -6,4 +6,6 @@ This repository is common for all java based flair applications which share code
 
 To build the application and install in local maven repository use
 
+```sh
     mvn clean install
+```
