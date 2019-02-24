@@ -8,6 +8,10 @@ trigger:
     - master
     - feature/*
     - bug/*
+    - release/*
+  tags:
+    include:
+    - v*
 
 pr:
   branches:
@@ -48,7 +52,7 @@ steps:
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.8'
     jdkArchitectureOption: 'x64'
-    publishJUnitResults: false
+    publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
     goals: 'package'
   condition: ne(variables['Build.SourceBranch'], 'refs/heads/master')
@@ -61,7 +65,7 @@ steps:
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.8'
     jdkArchitectureOption: 'x64'
-    publishJUnitResults: false
+    publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
     goals: 'deploy'
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
