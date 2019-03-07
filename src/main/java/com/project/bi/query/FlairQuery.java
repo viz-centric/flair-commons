@@ -1,9 +1,9 @@
 package com.project.bi.query;
 
 
-import lombok.Value;
+import lombok.Data;
 
-@Value
+@Data
 public class FlairQuery {
 
     /**
@@ -14,6 +14,4 @@ public class FlairQuery {
     private boolean pullMeta;
 
     private String source;
-
-    private boolean isCacheEnabled;
 }
