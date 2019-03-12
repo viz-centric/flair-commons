@@ -9,3 +9,9 @@ This repository is common for all java based flair applications which share code
 To build the application and install in local maven repository use
 
     mvn clean install
+
+## Release
+
+To release the application
+
+mvn release:clean release:prepare release:perform -DreleaseVersion=${releaseVersion} -DdevelopmentVersion=${developmentVersion}
