@@ -7,12 +7,13 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <groupId>org.springframework.boot</groupId>
         <version>1.5.4.RELEASE</version>
-        <relativePath/>
+        <relativePath />
     </parent>
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <maven.release.plugin>2.4.2</maven.release.plugin>
+        <maven.release.plugin>2.5.3</maven.release.plugin>
+        <maven.scm.provider.gitexe>1.9.5</maven.scm.provider.gitexe>
     </properties>
     <groupId>com.project.bi</groupId>
     <artifactId>project-bi-common</artifactId>
@@ -96,23 +97,24 @@
         </dependency>
     </dependencies>
 
-    <profiles>
-        <profile>
-            <id>prod</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-release-plugin</artifactId>
-                        <version>${maven.release.plugin}</version>
-                        <configuration>
-                            <tagNameFormat>v@{project.version}</tagNameFormat>
-                            <autoVersionSubmodules>true</autoVersionSubmodules>
-                            <releaseProfiles>releases</releaseProfiles>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>${maven.release.plugin}</version>
+                <configuration>
+                    <tagNameFormat>v@{project.version}</tagNameFormat>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.scm</groupId>
+                        <artifactId>maven-scm-provider-gitexe</artifactId>
+                        <version>${maven.scm.provider.gitexe}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
 </project>
