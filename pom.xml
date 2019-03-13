@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -13,6 +14,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.release.plugin>2.5.3</maven.release.plugin>
         <maven.scm.provider.gitexe>1.9.5</maven.scm.provider.gitexe>
+        <project.scm.id>github-credentials</project.scm.id>
     </properties>
     <groupId>com.project.bi</groupId>
     <artifactId>project-bi-common</artifactId>
@@ -20,11 +22,11 @@
     <description>Project that contains all common classes to project BI</description>
 
     <scm>
-        <connection>scm:git:https://github.com/viz-centric/flair-commons.git</connection>
-        <url>https://github.com/viz-centric/flair-commons.git</url>
-        <developerConnection>scm:git:https://github.com/viz-centric/flair-commons.git</developerConnection>
-      <tag>HEAD</tag>
-  </scm>
+        <connection>scm:git:https://${GIT_USER}:${GIT_PASSWORD}@github.com/viz-centric/flair-commons.git</connection>
+        <url>https://${GIT_USER}:${GIT_PASSWORD}@github.com/viz-centric/flair-commons.git</url>
+        <developerConnection>scm:git:https://${GIT_USER}:${GIT_PASSWORD}@github.com/viz-centric/flair-commons.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
 
     <distributionManagement>
         <repository>
@@ -96,8 +98,6 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-
     <build>
         <plugins>
             <plugin>
