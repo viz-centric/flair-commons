@@ -31,6 +31,7 @@ public class QueryDTO implements Interpretable {
     private List<SortDTO> orders = new ArrayList<>();
 
     private boolean metaRetrieved;
+    private boolean enableCaching;
 
     @Deprecated
     public String interpret(String connectionName) {
