@@ -64,16 +64,3 @@ steps:
       GIT_PASSWORD: $(GIT_PASSWORD)
     condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
     displayName: 'Release'
-
-#  - task: Maven@3
-#    inputs:
-#      mavenPomFile: 'pom.xml'
-#      mavenOptions: '-Xmx3072m'
-#      javaHomeOption: 'JDKVersion'
-#      jdkVersionOption: '1.8'
-#      jdkArchitectureOption: 'x64'
-#      publishJUnitResults: true
-#      testResultsFiles: '**/TEST-*.xml'
-#      goals: 'deploy'
-#    condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
-#    displayName: 'Compile, Test, Package & Deploy the artifact'
