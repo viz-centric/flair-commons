@@ -52,7 +52,7 @@ steps:
       testResultsFiles: '**/TEST-*.xml'
       goals: 'package'
     condition: ne(variables['Build.SourceBranch'], 'refs/heads/master')
-    displayName: 'Compile, Test & Package the artifact'
+    displayName: 'Build'
 
   - script: |
       git checkout master
@@ -63,7 +63,7 @@ steps:
       GIT_USERNAME: $(GIT_USERNAME)
       GIT_PASSWORD: $(GIT_PASSWORD)
     condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
-    displayName: 'Maven release'
+    displayName: 'Release'
 
 #  - task: Maven@3
 #    inputs:
