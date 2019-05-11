@@ -69,4 +69,15 @@ public class SQLUtil {
         }
 
     }
+
+    public static String sanitize(String string) {
+        if (string == null) {
+            return null;
+        }
+        if ("".equalsIgnoreCase(string)) {
+            return "";
+        }
+        return string
+                .replaceAll("'", "''");
+    }
 }

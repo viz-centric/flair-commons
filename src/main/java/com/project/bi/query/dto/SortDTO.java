@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import static com.project.bi.query.SQLUtil.sanitize;
+
 /**
  * Holds data related to sorting
  */
@@ -28,7 +30,7 @@ public class SortDTO implements Interpretable {
     
     @Override
     public String interpret() {
-        return featureName + " " + direction.getValue();
+        return sanitize(featureName) + " " + direction.getValue();
     }
 
     public enum Direction {
