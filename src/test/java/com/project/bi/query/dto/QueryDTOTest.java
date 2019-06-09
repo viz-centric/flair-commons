@@ -53,4 +53,33 @@ public class QueryDTOTest {
         String result = queryDTO.interpret();
         assertEquals("SELECT DISTINCT book,author FROM tablename WHERE date LIKE '%2019-01-%' AND date NOT IN ('2019-01-10','2019-01-11') ORDER BY book DESC LIMIT 10", result);
     }
+
+    @Test
+    public void copy() {
+        QueryDTO queryDTO = new QueryDTO();
+        queryDTO.setSource("tablename");
+        queryDTO.setDistinct(true);
+        queryDTO.setLimit(10L);
+        SortDTO sort = new SortDTO();
+        sort.setFeatureName("book");
+        sort.setDirection(SortDTO.Direction.DESC);
+        queryDTO.setOrders(Arrays.asList(sort));
+        queryDTO.setFields(Arrays.asList("book", "author"));
+        ConditionExpressionDTO conditionExpressionDTO = new ConditionExpressionDTO();
+        conditionExpressionDTO.setSourceType(ConditionExpressionDTO.SourceType.FILTER);
+        AndConditionExpression conditionExpression = new AndConditionExpression();
+        LikeConditionExpression firstExpression = new LikeConditionExpression();
+        firstExpression.setValue("2019-01-");
+        firstExpression.setFeatureName("date");
+        conditionExpression.setFirstExpression(firstExpression);
+        NotContainsConditionExpression secondExpression = new NotContainsConditionExpression();
+        secondExpression.setFeatureName("date");
+        secondExpression.setValues(Arrays.asList("2019-01-10", "2019-01-11"));
+        conditionExpression.setSecondExpression(secondExpression);
+        conditionExpressionDTO.setConditionExpression(conditionExpression);
+        queryDTO.setConditionExpressions(Arrays.asList(conditionExpressionDTO));
+
+        QueryDTO newQuery = new QueryDTO(queryDTO);
+        assertEquals("SELECT DISTINCT book,author FROM tablename WHERE date LIKE '%2019-01-%' AND date NOT IN ('2019-01-10','2019-01-11') ORDER BY book DESC LIMIT 10", newQuery.interpret());
+    }
 }

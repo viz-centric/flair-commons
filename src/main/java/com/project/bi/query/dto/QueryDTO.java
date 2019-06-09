@@ -35,6 +35,21 @@ public class QueryDTO implements Interpretable {
     private boolean metaRetrieved;
     private boolean enableCaching;
 
+    public QueryDTO() {
+    }
+
+    public QueryDTO(QueryDTO queryDTO) {
+        this.source = queryDTO.getSource();
+        this.fields = new ArrayList<>(queryDTO.getFields());
+        this.groupBy = new ArrayList<>(queryDTO.getGroupBy());
+        this.limit = queryDTO.getLimit();
+        this.conditionExpressions = new ArrayList<>(queryDTO.getConditionExpressions());
+        this.distinct = queryDTO.isDistinct();
+        this.orders = new ArrayList<>(queryDTO.getOrders());
+        this.metaRetrieved = queryDTO.isMetaRetrieved();
+        this.enableCaching = queryDTO.isEnableCaching();
+    }
+
     @Deprecated
     public String interpret(String connectionName) {
         return interpret();
