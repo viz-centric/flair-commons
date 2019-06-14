@@ -9,16 +9,16 @@ public class SQLUtilTest {
 
     @Test
     public void sanitizeEscapesQuotes() {
-        assertEquals("select * from ''test''", SQLUtil.sanitize("select * from 'test'"));
+        assertEquals("select * from ''test''", SQLUtil.sanitizeString("select * from 'test'"));
     }
 
     @Test
     public void sanitizeReturnsNull() {
-        assertNull(SQLUtil.sanitize(null));
+        assertNull(SQLUtil.sanitizeField(null));
     }
 
     @Test
     public void sanitizeReturnsEmptyString() {
-        assertEquals("", SQLUtil.sanitize(""));
+        assertEquals("", SQLUtil.sanitizeString(""));
     }
 }

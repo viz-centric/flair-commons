@@ -1,13 +1,14 @@
 package com.project.bi.query.expression.condition.impl;
 
 import com.project.bi.query.SQLUtil;
+import com.project.bi.query.dto.QueryFieldDTO;
 import com.project.bi.query.expression.condition.SimpleConditionExpression;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import static com.project.bi.query.SQLUtil.sanitize;
+import static com.project.bi.query.SQLUtil.sanitizeField;
 
 @Getter
 @Setter
@@ -15,7 +16,7 @@ import static com.project.bi.query.SQLUtil.sanitize;
 @AllArgsConstructor
 public class CompareConditionExpression extends SimpleConditionExpression {
 
-    protected String value;
+    protected QueryFieldDTO value;
 
     protected ComparatorType comparatorType;
 
@@ -53,7 +54,7 @@ public class CompareConditionExpression extends SimpleConditionExpression {
     public String interpret() {
         String q = "";
         if (getFeatureName() != null)
-            q = sanitize(getFeatureName()) + " " + SQLUtil.getSQLComparatorTypeSymbol(comparatorType) + " " + SQLUtil.preProcessValue(getValue());
+            q = sanitizeField(getFeatureName()) + " " + SQLUtil.getSQLComparatorTypeSymbol(comparatorType) + " " + SQLUtil.preProcessValue(sanitizeField(getValue()));
         return q;
     }
 }

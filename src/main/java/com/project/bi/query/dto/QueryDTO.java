@@ -11,7 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.project.bi.query.SQLUtil.sanitize;
+import static com.project.bi.query.SQLUtil.sanitizeField;
+import static com.project.bi.query.SQLUtil.sanitizeString;
 
 /**
  * Data transfer object that used to transfer query data between flair-bi and fbiengine
@@ -22,18 +23,14 @@ public class QueryDTO implements Interpretable {
 
     @NotNull
     private String source;
-    /*
-        sum(price) as price
-     */
-    private List<String> fields = new ArrayList<>();
-    private List<String> groupBy = new ArrayList<>();
+    private List<QueryFieldDTO> fields = new ArrayList<>();
+    private List<QueryFieldDTO> groupBy = new ArrayList<>();
     private Long limit;
     private List<ConditionExpressionDTO> conditionExpressions = new ArrayList<>();
     private boolean distinct;
     private List<SortDTO> orders = new ArrayList<>();
 
     private boolean metaRetrieved;
-    private boolean enableCaching;
 
     public QueryDTO() {
     }
@@ -47,7 +44,6 @@ public class QueryDTO implements Interpretable {
         this.distinct = queryDTO.isDistinct();
         this.orders = new ArrayList<>(queryDTO.getOrders());
         this.metaRetrieved = queryDTO.isMetaRetrieved();
-        this.enableCaching = queryDTO.isEnableCaching();
     }
 
     @Deprecated
@@ -83,9 +79,9 @@ public class QueryDTO implements Interpretable {
 
         builder.append("SELECT ")
                 .append(distinct ? "DISTINCT " : "")
-                .append(fields.isEmpty() ? "*" : fields.stream().map(it -> sanitize(it)).collect(Collectors.joining(",")))
+                .append(fields.isEmpty() ? "*" : fields.stream().map(it -> sanitizeField(it)).collect(Collectors.joining(",")))
                 .append(" FROM ")
-                .append(sanitize(source));
+                .append(sanitizeString(source));
 
         ConditionExpression where = mergeConditionExpression();
 
@@ -98,13 +94,15 @@ public class QueryDTO implements Interpretable {
         if (!groupBy.isEmpty()) {
             builder
                     .append(" GROUP BY ")
-                    .append(groupBy.stream().map(it -> sanitize(it)).collect(Collectors.joining(",")));
+                    .append(groupBy.stream().map(it -> sanitizeField(it)).collect(Collectors.joining(",")));
 
         }
 
         if (!orders.isEmpty()) {
             builder.append(" ORDER BY ")
-                    .append(orders.stream().map(SortDTO::interpret).collect(Collectors.joining(",")));
+                    .append(orders.stream()
+                            .map(SortDTO::interpret)
+                            .collect(Collectors.joining(",")));
 
         }
 
@@ -119,6 +117,6 @@ public class QueryDTO implements Interpretable {
 	}
 
 
-	
+
 
 }

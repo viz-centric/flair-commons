@@ -1,16 +1,17 @@
 package com.project.bi.query.expression.condition.impl;
 
+import com.project.bi.query.dto.QueryFieldDTO;
 import com.project.bi.query.expression.condition.SimpleConditionExpression;
 import lombok.Getter;
 import lombok.Setter;
 
-import static com.project.bi.query.SQLUtil.sanitize;
+import static com.project.bi.query.SQLUtil.sanitizeField;
 
 @Getter
 @Setter
 public class LikeConditionExpression extends SimpleConditionExpression {
 
-    protected String value;
+    protected QueryFieldDTO value;
 
     /**
      * Method that interprets certain statements and facts
@@ -26,9 +27,9 @@ public class LikeConditionExpression extends SimpleConditionExpression {
     public String interpret() {
         String q = "";
         if (getFeatureName() != null) {
-            q = sanitize(getFeatureName()) +
+            q = sanitizeField(getFeatureName()) +
                     " LIKE " +
-                    "'%" + sanitize(getValue()) + "%'";
+                    "'%" + sanitizeField(getValue()) + "%'";
         }
         return q;
     }

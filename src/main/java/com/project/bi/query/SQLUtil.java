@@ -1,5 +1,7 @@
 package com.project.bi.query;
 
+import com.project.bi.query.dto.QueryFieldDTO;
+import com.project.bi.query.dto.QueryFieldTypeDTO;
 import com.project.bi.query.expression.condition.impl.CompareConditionExpression;
 
 public class SQLUtil {
@@ -70,7 +72,7 @@ public class SQLUtil {
 
     }
 
-    public static String sanitize(String string) {
+    public static String sanitizeString(String string) {
         if (string == null) {
             return null;
         }
@@ -79,5 +81,15 @@ public class SQLUtil {
         }
         return string
                 .replaceAll("'", "''");
+    }
+
+    public static String sanitizeField(QueryFieldDTO field) {
+        if (field == null) {
+            return null;
+        }
+        if (field.getType() == QueryFieldTypeDTO.SANITIZE) {
+            return sanitizeString(field.getName());
+        }
+        return field.getName();
     }
 }

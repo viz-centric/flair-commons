@@ -1,13 +1,14 @@
 package com.project.bi.query.expression.condition.impl;
 
 import com.project.bi.query.SQLUtil;
+import com.project.bi.query.dto.QueryFieldDTO;
 import com.project.bi.query.expression.condition.SimpleConditionExpression;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import static com.project.bi.query.SQLUtil.sanitize;
+import static com.project.bi.query.SQLUtil.sanitizeField;
 
 @Getter
 @Setter
@@ -15,9 +16,9 @@ import static com.project.bi.query.SQLUtil.sanitize;
 @AllArgsConstructor
 public class BetweenConditionExpression extends SimpleConditionExpression {
 
-    protected String value;
+    protected QueryFieldDTO value;
 
-    protected String secondValue;
+    protected QueryFieldDTO secondValue;
 
 
     /**
@@ -37,10 +38,10 @@ public class BetweenConditionExpression extends SimpleConditionExpression {
             return "";
         }
 
-        return sanitize(getFeatureName())
+        return sanitizeField(getFeatureName())
                 + " BETWEEN "
-                + SQLUtil.preProcessValue(sanitize(getValue()))
+                + SQLUtil.preProcessValue(sanitizeField(getValue()))
                 + " AND "
-                + SQLUtil.preProcessValue(sanitize(getSecondValue()));
+                + SQLUtil.preProcessValue(sanitizeField(getSecondValue()));
     }
 }
