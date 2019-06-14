@@ -4,8 +4,6 @@ import com.project.bi.query.expression.condition.SimpleConditionExpression;
 import lombok.Getter;
 import lombok.Setter;
 
-import static com.project.bi.query.SQLUtil.sanitize;
-
 @Getter
 @Setter
 public class LikeConditionExpression extends SimpleConditionExpression {
@@ -26,9 +24,9 @@ public class LikeConditionExpression extends SimpleConditionExpression {
     public String interpret() {
         String q = "";
         if (getFeatureName() != null) {
-            q = sanitize(getFeatureName()) +
+            q = getFeatureName() +
                     " LIKE " +
-                    "'%" + sanitize(getValue()) + "%'";
+                    "'%" + getValue() + "%'";
         }
         return q;
     }

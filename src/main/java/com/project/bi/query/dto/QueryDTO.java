@@ -11,8 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.project.bi.query.SQLUtil.sanitize;
-
 /**
  * Data transfer object that used to transfer query data between flair-bi and fbiengine
  */
@@ -83,9 +81,9 @@ public class QueryDTO implements Interpretable {
 
         builder.append("SELECT ")
                 .append(distinct ? "DISTINCT " : "")
-                .append(fields.isEmpty() ? "*" : fields.stream().map(it -> sanitize(it)).collect(Collectors.joining(",")))
+                .append(fields.isEmpty() ? "*" : fields.stream().map(it -> it).collect(Collectors.joining(",")))
                 .append(" FROM ")
-                .append(sanitize(source));
+                .append(source);
 
         ConditionExpression where = mergeConditionExpression();
 
@@ -98,7 +96,7 @@ public class QueryDTO implements Interpretable {
         if (!groupBy.isEmpty()) {
             builder
                     .append(" GROUP BY ")
-                    .append(groupBy.stream().map(it -> sanitize(it)).collect(Collectors.joining(",")));
+                    .append(groupBy.stream().map(it -> it).collect(Collectors.joining(",")));
 
         }
 
