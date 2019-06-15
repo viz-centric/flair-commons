@@ -20,18 +20,13 @@ public class QueryDTO implements Interpretable {
 
     @NotNull
     private String source;
-    /*
-        sum(price) as price
-     */
     private List<String> fields = new ArrayList<>();
     private List<String> groupBy = new ArrayList<>();
     private Long limit;
     private List<ConditionExpressionDTO> conditionExpressions = new ArrayList<>();
     private boolean distinct;
     private List<SortDTO> orders = new ArrayList<>();
-
     private boolean metaRetrieved;
-    private boolean enableCaching;
 
     public QueryDTO() {
     }
@@ -45,7 +40,6 @@ public class QueryDTO implements Interpretable {
         this.distinct = queryDTO.isDistinct();
         this.orders = new ArrayList<>(queryDTO.getOrders());
         this.metaRetrieved = queryDTO.isMetaRetrieved();
-        this.enableCaching = queryDTO.isEnableCaching();
     }
 
     @Deprecated
