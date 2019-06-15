@@ -7,8 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import static com.project.bi.query.SQLUtil.sanitize;
-
 @Getter
 @Setter
 @NoArgsConstructor
@@ -37,10 +35,10 @@ public class BetweenConditionExpression extends SimpleConditionExpression {
             return "";
         }
 
-        return sanitize(getFeatureName())
+        return getFeatureName()
                 + " BETWEEN "
-                + SQLUtil.preProcessValue(sanitize(getValue()))
+                + SQLUtil.preProcessValue(getValue())
                 + " AND "
-                + SQLUtil.preProcessValue(sanitize(getSecondValue()));
+                + SQLUtil.preProcessValue(getSecondValue());
     }
 }

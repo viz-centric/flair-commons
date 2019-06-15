@@ -7,8 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import static com.project.bi.query.SQLUtil.sanitize;
-
 @Getter
 @Setter
 @NoArgsConstructor
@@ -53,7 +51,7 @@ public class CompareConditionExpression extends SimpleConditionExpression {
     public String interpret() {
         String q = "";
         if (getFeatureName() != null)
-            q = sanitize(getFeatureName()) + " " + SQLUtil.getSQLComparatorTypeSymbol(comparatorType) + " " + SQLUtil.preProcessValue(getValue());
+            q = getFeatureName() + " " + SQLUtil.getSQLComparatorTypeSymbol(comparatorType) + " " + SQLUtil.preProcessValue(getValue());
         return q;
     }
 }
