@@ -3,7 +3,6 @@ package com.project.bi.query.dto;
 import com.project.bi.query.expression.condition.impl.AndConditionExpression;
 import com.project.bi.query.expression.condition.impl.LikeConditionExpression;
 import com.project.bi.query.expression.condition.impl.NotContainsConditionExpression;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -11,10 +10,6 @@ import java.util.Arrays;
 import static org.junit.Assert.assertEquals;
 
 public class QueryDTOTest {
-
-    @Before
-    public void setUp() throws Exception {
-    }
 
     @Test
     public void interpretTablename() {
@@ -36,6 +31,11 @@ public class QueryDTOTest {
         sort.setDirection(SortDTO.Direction.DESC);
         queryDTO.setOrders(Arrays.asList(sort));
         queryDTO.setFields(Arrays.asList("book", "author"));
+        queryDTO.setGroupBy(Arrays.asList("mygroup1", "mygroup2"));
+        queryDTO.setHaving(Arrays.asList(
+                HavingDTO.builder().comparatorType(HavingDTO.ComparatorType.GT).featureName("mycolumn").value("500").build(),
+                HavingDTO.builder().comparatorType(HavingDTO.ComparatorType.LT).featureName("mycolumn2").value("test").build()
+        ));
         ConditionExpressionDTO conditionExpressionDTO = new ConditionExpressionDTO();
         conditionExpressionDTO.setSourceType(ConditionExpressionDTO.SourceType.FILTER);
         AndConditionExpression conditionExpression = new AndConditionExpression();
@@ -51,7 +51,7 @@ public class QueryDTOTest {
         queryDTO.setConditionExpressions(Arrays.asList(conditionExpressionDTO));
 
         String result = queryDTO.interpret();
-        assertEquals("SELECT DISTINCT book,author FROM tablename WHERE date LIKE '%2019-01-%' AND date NOT IN ('2019-01-10','2019-01-11') ORDER BY book DESC LIMIT 10", result);
+        assertEquals("SELECT DISTINCT book,author FROM tablename WHERE date LIKE '%2019-01-%' AND date NOT IN ('2019-01-10','2019-01-11') GROUP BY mygroup1,mygroup2 HAVING (mycolumn > 500) AND (mycolumn2 < 'test') ORDER BY book DESC LIMIT 10", result);
     }
 
     @Test

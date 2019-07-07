@@ -23,6 +23,7 @@ public class QueryDTO implements Interpretable {
     private List<String> fields = new ArrayList<>();
     private List<String> groupBy = new ArrayList<>();
     private Long limit;
+    private List<HavingDTO> having = new ArrayList<>();
     private List<ConditionExpressionDTO> conditionExpressions = new ArrayList<>();
     private boolean distinct;
     private List<SortDTO> orders = new ArrayList<>();
@@ -90,8 +91,14 @@ public class QueryDTO implements Interpretable {
         if (!groupBy.isEmpty()) {
             builder
                     .append(" GROUP BY ")
-                    .append(groupBy.stream().map(it -> it).collect(Collectors.joining(",")));
+                    .append(groupBy.stream().collect(Collectors.joining(",")));
 
+        }
+
+        if (!having.isEmpty()) {
+            builder
+                    .append(" HAVING ")
+                    .append(having.stream().map(HavingDTO::interpret).collect(Collectors.joining(" AND ")));
         }
 
         if (!orders.isEmpty()) {
