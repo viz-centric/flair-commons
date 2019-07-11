@@ -37,6 +37,7 @@ public class QueryDTO implements Interpretable {
         this.fields = new ArrayList<>(queryDTO.getFields());
         this.groupBy = new ArrayList<>(queryDTO.getGroupBy());
         this.limit = queryDTO.getLimit();
+        this.having = new ArrayList<>(queryDTO.getHaving());
         this.conditionExpressions = new ArrayList<>(queryDTO.getConditionExpressions());
         this.distinct = queryDTO.isDistinct();
         this.orders = new ArrayList<>(queryDTO.getOrders());
