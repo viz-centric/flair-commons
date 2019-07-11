@@ -2,17 +2,26 @@ package com.project.bi.query.dto;
 
 import com.project.bi.general.Interpretable;
 import com.project.bi.query.SQLUtil;
+import com.project.bi.query.dto.SortDTO.Direction;
+
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
-@Getter
+
 @Builder
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class HavingDTO implements Interpretable {
 
-    private final String featureName;
-    private final String value;
-    private final ComparatorType comparatorType;
+    private  String featureName;
+    private  String value;
+    private  ComparatorType comparatorType;
 
     @Override
     public String interpret(String connectionName) {
