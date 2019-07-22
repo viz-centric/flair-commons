@@ -2,14 +2,13 @@ package com.project.bi.query.dto;
 
 import com.project.bi.general.Interpretable;
 import com.project.bi.query.SQLUtil;
-import com.project.bi.query.dto.SortDTO.Direction;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 
 @Builder
@@ -17,6 +16,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class HavingDTO implements Interpretable {
 
     private  String featureName;
