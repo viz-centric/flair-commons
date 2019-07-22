@@ -5,8 +5,8 @@ import com.project.bi.query.expression.condition.ConditionExpression;
 import com.project.bi.query.expression.condition.impl.AndConditionExpression;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,9 +16,9 @@ import java.util.stream.Collectors;
  */
 @Getter
 @Setter
+@ToString
 public class QueryDTO implements Interpretable {
 
-    @NotNull
     private String source;
     private List<String> fields = new ArrayList<>();
     private List<String> groupBy = new ArrayList<>();
