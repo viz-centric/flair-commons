@@ -31,15 +31,13 @@ public class HavingDTO implements Interpretable {
     @Getter
     @RequiredArgsConstructor
     public enum ComparatorType {
-
-        EQ("eq"),
-        NEQ("neq"),
-        GT("gt"),
-        LT("lt"),
-        GTE("gte"),
-        LTE("lte");
-
-        private final String value;
+        UNKNOWN,
+        EQ,
+        NEQ,
+        GT,
+        LT,
+        GTE,
+        LTE;
     }
 
     @Override
