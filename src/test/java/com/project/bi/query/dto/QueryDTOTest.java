@@ -26,6 +26,7 @@ public class QueryDTOTest {
         queryDTO.setSource("tablename");
         queryDTO.setDistinct(true);
         queryDTO.setLimit(10L);
+        queryDTO.setOffset(53L);
         SortDTO sort = new SortDTO();
         sort.setFeatureName("book");
         sort.setDirection(SortDTO.Direction.DESC);
@@ -51,7 +52,7 @@ public class QueryDTOTest {
         queryDTO.setConditionExpressions(Arrays.asList(conditionExpressionDTO));
 
         String result = queryDTO.interpret();
-        assertEquals("SELECT DISTINCT book,author FROM tablename WHERE date LIKE '%2019-01-%' AND date NOT IN ('2019-01-10','2019-01-11') GROUP BY mygroup1,mygroup2 HAVING (mycolumn > 500) AND (mycolumn2 < 'test') ORDER BY book DESC LIMIT 10", result);
+        assertEquals("SELECT DISTINCT book,author FROM tablename WHERE date LIKE '%2019-01-%' AND date NOT IN ('2019-01-10','2019-01-11') GROUP BY mygroup1,mygroup2 HAVING (mycolumn > 500) AND (mycolumn2 < 'test') ORDER BY book DESC LIMIT 10 OFFSET 53", result);
     }
 
     @Test
@@ -60,6 +61,7 @@ public class QueryDTOTest {
         queryDTO.setSource("tablename");
         queryDTO.setDistinct(true);
         queryDTO.setLimit(10L);
+        queryDTO.setOffset(53L);
         SortDTO sort = new SortDTO();
         sort.setFeatureName("book");
         sort.setDirection(SortDTO.Direction.DESC);
@@ -80,6 +82,6 @@ public class QueryDTOTest {
         queryDTO.setConditionExpressions(Arrays.asList(conditionExpressionDTO));
 
         QueryDTO newQuery = new QueryDTO(queryDTO);
-        assertEquals("SELECT DISTINCT book,author FROM tablename WHERE date LIKE '%2019-01-%' AND date NOT IN ('2019-01-10','2019-01-11') ORDER BY book DESC LIMIT 10", newQuery.interpret());
+        assertEquals("SELECT DISTINCT book,author FROM tablename WHERE date LIKE '%2019-01-%' AND date NOT IN ('2019-01-10','2019-01-11') ORDER BY book DESC LIMIT 10 OFFSET 53", newQuery.interpret());
     }
 }

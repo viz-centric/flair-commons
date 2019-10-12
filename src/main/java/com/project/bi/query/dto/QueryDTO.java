@@ -23,6 +23,7 @@ public class QueryDTO implements Interpretable {
     private List<String> fields = new ArrayList<>();
     private List<String> groupBy = new ArrayList<>();
     private Long limit;
+    private Long offset;
     private List<HavingDTO> having = new ArrayList<>();
     private List<ConditionExpressionDTO> conditionExpressions = new ArrayList<>();
     private boolean distinct;
@@ -37,6 +38,7 @@ public class QueryDTO implements Interpretable {
         this.fields = new ArrayList<>(queryDTO.getFields());
         this.groupBy = new ArrayList<>(queryDTO.getGroupBy());
         this.limit = queryDTO.getLimit();
+        this.offset = queryDTO.getOffset();
         this.having = new ArrayList<>(queryDTO.getHaving());
         this.conditionExpressions = new ArrayList<>(queryDTO.getConditionExpressions());
         this.distinct = queryDTO.isDistinct();
@@ -112,8 +114,11 @@ public class QueryDTO implements Interpretable {
             builder.append(" LIMIT ")
                     .append(limit);
         }
-        
 
+        if (offset != null) {
+            builder.append(" OFFSET ")
+                    .append(offset);
+        }
 
         return builder.toString();
 	}
