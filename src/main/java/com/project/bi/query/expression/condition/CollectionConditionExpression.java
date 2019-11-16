@@ -1,5 +1,6 @@
 package com.project.bi.query.expression.condition;
 
+import com.project.bi.query.dto.ValueTypeDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,5 +15,7 @@ import java.util.List;
 public abstract class CollectionConditionExpression extends SimpleConditionExpression {
 
     protected List<String> values;
+
+    protected List<ValueTypeDTO> valueTypes;
 
 }
