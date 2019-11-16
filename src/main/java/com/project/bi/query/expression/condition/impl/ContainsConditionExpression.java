@@ -28,15 +28,14 @@ public class ContainsConditionExpression extends CollectionConditionExpression {
             str.append(" IN (");
 
             Stream<String> stringStream;
-            if (getValues() != null) {
-                stringStream = getValues()
-                        .stream()
-                        .map(SQLUtil::preProcessValue);
-            } else {
+            if (getValueTypes() != null) {
                 stringStream = getValueTypes()
                         .stream()
                         .map(ValueTypeDTO::interpret);
-
+            } else {
+                stringStream = getValues()
+                        .stream()
+                        .map(SQLUtil::preProcessValue);
             }
 
             String v = stringStream.collect(Collectors.joining(","));

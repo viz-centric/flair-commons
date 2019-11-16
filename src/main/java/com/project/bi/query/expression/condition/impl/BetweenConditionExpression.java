@@ -1,6 +1,5 @@
 package com.project.bi.query.expression.condition.impl;
 
-import com.project.bi.query.SQLUtil;
 import com.project.bi.query.dto.ValueTypeDTO;
 import com.project.bi.query.expression.condition.SimpleConditionExpression;
 import lombok.AllArgsConstructor;
@@ -14,10 +13,12 @@ import lombok.Setter;
 @AllArgsConstructor
 public class BetweenConditionExpression extends SimpleConditionExpression {
 
+    @Deprecated // use valueType instead
     protected String value;
 
     protected ValueTypeDTO valueType;
 
+    @Deprecated // use secondValueType instead
     protected String secondValue;
 
     protected ValueTypeDTO secondValueType;
@@ -42,8 +43,8 @@ public class BetweenConditionExpression extends SimpleConditionExpression {
 
         return getFeatureName()
                 + " BETWEEN "
-                + SQLUtil.preProcessValue(pickValue(valueType, value))
+                + pickValue(valueType, value)
                 + " AND "
-                + SQLUtil.preProcessValue(pickValue(secondValueType, secondValue));
+                + pickValue(secondValueType, secondValue);
     }
 }

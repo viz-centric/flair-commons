@@ -1,5 +1,6 @@
 package com.project.bi.query.expression.condition;
 
+import com.project.bi.query.SQLUtil;
 import com.project.bi.query.dto.ValueTypeDTO;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,7 +15,7 @@ public abstract class SimpleConditionExpression extends AbstractConditionExpress
         if (valueType != null) {
             return valueType.interpret();
         }
-        return value;
+        return SQLUtil.preProcessValue(value);
     }
 
 }

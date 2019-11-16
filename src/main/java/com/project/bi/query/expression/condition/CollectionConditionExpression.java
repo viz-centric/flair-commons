@@ -14,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 public abstract class CollectionConditionExpression extends SimpleConditionExpression {
 
+    @Deprecated // use valueTypes instead
     protected List<String> values;
 
     protected List<ValueTypeDTO> valueTypes;

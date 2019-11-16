@@ -1,11 +1,13 @@
 package com.project.bi.query.dto;
 
 import com.project.bi.query.SQLUtil;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class ValueTypeDTO {
     private String value;
     private String type;

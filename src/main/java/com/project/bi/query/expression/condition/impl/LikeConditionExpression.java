@@ -1,6 +1,5 @@
 package com.project.bi.query.expression.condition.impl;
 
-import com.project.bi.query.dto.ValueTypeDTO;
 import com.project.bi.query.expression.condition.SimpleConditionExpression;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,8 +9,6 @@ import lombok.Setter;
 public class LikeConditionExpression extends SimpleConditionExpression {
 
     protected String value;
-
-    protected ValueTypeDTO valueType;
 
     /**
      * Method that interprets certain statements and facts
@@ -30,7 +27,7 @@ public class LikeConditionExpression extends SimpleConditionExpression {
             q.append(getFeatureName())
                     .append(" LIKE ")
                     .append("'%")
-                    .append(pickValue(valueType, value))
+                    .append(getValue())
                     .append("%'");
         }
         return q.toString();

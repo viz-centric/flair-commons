@@ -14,6 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CompareConditionExpression extends SimpleConditionExpression {
 
+    @Deprecated // use valueType instead
     protected String value;
     protected ValueTypeDTO valueType;
 
@@ -57,7 +58,7 @@ public class CompareConditionExpression extends SimpleConditionExpression {
                     .append(" ")
                     .append(SQLUtil.getSQLComparatorTypeSymbol(comparatorType))
                     .append(" ")
-                    .append(SQLUtil.preProcessValue(pickValue(valueType, value)));
+                    .append(pickValue(valueType, value));
         }
         return q.toString();
     }
