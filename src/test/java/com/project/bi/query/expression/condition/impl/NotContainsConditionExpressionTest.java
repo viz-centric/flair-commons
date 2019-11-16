@@ -31,7 +31,7 @@ public class NotContainsConditionExpressionTest {
 
         String result = expression.interpret();
 
-        assertEquals("feature_name NOT IN (__FLAIR('value1', timestamp),__FLAIR('value2', date))", result);
+        assertEquals("feature_name NOT IN (__FLAIR(timestamp, 'value1'),__FLAIR(date, 'value2'))", result);
     }
 
     @Test
@@ -60,6 +60,6 @@ public class NotContainsConditionExpressionTest {
 
         String result = expression.interpret();
 
-        assertEquals("feature_name NOT IN (__FLAIR('value1', timestamp),__FLAIR('value2', date))", result);
+        assertEquals("feature_name NOT IN (__FLAIR(timestamp, 'value1'),__FLAIR(date, 'value2'))", result);
     }
 }

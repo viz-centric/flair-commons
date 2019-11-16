@@ -31,7 +31,7 @@ public class ContainsConditionExpressionTest {
 
         String result = expression.interpret();
 
-        assertEquals("feature_name IN (__FLAIR('value1', timestamp),__FLAIR('value2', date))", result);
+        assertEquals("feature_name IN (__FLAIR(timestamp, 'value1'),__FLAIR(date, 'value2'))", result);
     }
 
     @Test
@@ -61,6 +61,6 @@ public class ContainsConditionExpressionTest {
 
         String result = expression.interpret();
 
-        assertEquals("feature_name IN (__FLAIR('value1', timestamp),__FLAIR('value2', date))", result);
+        assertEquals("feature_name IN (__FLAIR(timestamp, 'value1'),__FLAIR(date, 'value2'))", result);
     }
 }
