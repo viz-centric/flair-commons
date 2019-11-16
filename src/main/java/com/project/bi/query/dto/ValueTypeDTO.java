@@ -16,6 +16,6 @@ public class ValueTypeDTO {
         if (type == null) {
             return SQLUtil.preProcessValue(value);
         }
-        return "__FLAIR(" + SQLUtil.preProcessValue(value) + ", " + type + ")";
+        return "__FLAIR(" + type + ", " + SQLUtil.preProcessValue(value) + ")";
     }
 }

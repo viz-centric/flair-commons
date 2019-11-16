@@ -11,6 +11,6 @@ public class ValueTypeDTOTest {
         ValueTypeDTO dto = new ValueTypeDTO();
         dto.setType("timestamp");
         dto.setValue("2019-10-11");
-        assertEquals("__FLAIR('2019-10-11', timestamp)", dto.interpret());
+        assertEquals("__FLAIR(timestamp, '2019-10-11')", dto.interpret());
     }
 }

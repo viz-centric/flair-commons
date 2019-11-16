@@ -28,7 +28,7 @@ public class CompareConditionExpressionTest {
 
         String result = expression.interpret();
 
-        assertEquals("feature_name = __FLAIR('value', timestamp)", result);
+        assertEquals("feature_name = __FLAIR(timestamp, 'value')", result);
     }
 
     @Test
@@ -54,6 +54,6 @@ public class CompareConditionExpressionTest {
 
         String result = expression.interpret();
 
-        assertEquals("feature_name = __FLAIR('value', timestamp)", result);
+        assertEquals("feature_name = __FLAIR(timestamp, 'value')", result);
     }
 }
