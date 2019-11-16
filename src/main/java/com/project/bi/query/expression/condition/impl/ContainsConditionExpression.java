@@ -1,9 +1,11 @@
 package com.project.bi.query.expression.condition.impl;
 
 import com.project.bi.query.SQLUtil;
+import com.project.bi.query.dto.ValueTypeDTO;
 import com.project.bi.query.expression.condition.CollectionConditionExpression;
 
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ContainsConditionExpression extends CollectionConditionExpression {
 
@@ -25,16 +27,21 @@ public class ContainsConditionExpression extends CollectionConditionExpression {
             str.append(getFeatureName());
             str.append(" IN (");
 
-            String values = getValues()
-                    .stream()
-                    .map(it -> it)
-                    .map(SQLUtil::preProcessValue)
-                    .collect(Collectors.joining(","));
-
-            if ("".equals(values)) {
-                values = null;
+            Stream<String> stringStream;
+            if (getValueTypes() != null) {
+                stringStream = getValueTypes()
+                        .stream()
+                        .map(ValueTypeDTO::interpret);
+            } else {
+                stringStream = getValues()
+                        .stream()
+                        .map(SQLUtil::preProcessValue);
             }
-            str.append(values).append(")");
+
+            String v = stringStream.collect(Collectors.joining(","));
+
+            str.append(v)
+                    .append(")");
         }
 
         return str.toString();

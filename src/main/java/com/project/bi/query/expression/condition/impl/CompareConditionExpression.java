@@ -1,6 +1,7 @@
 package com.project.bi.query.expression.condition.impl;
 
 import com.project.bi.query.SQLUtil;
+import com.project.bi.query.dto.ValueTypeDTO;
 import com.project.bi.query.expression.condition.SimpleConditionExpression;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,7 +14,9 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CompareConditionExpression extends SimpleConditionExpression {
 
+    @Deprecated // use valueType instead
     protected String value;
+    protected ValueTypeDTO valueType;
 
     protected ComparatorType comparatorType;
 
@@ -49,9 +52,14 @@ public class CompareConditionExpression extends SimpleConditionExpression {
 
     @Override
     public String interpret() {
-        String q = "";
-        if (getFeatureName() != null)
-            q = getFeatureName() + " " + SQLUtil.getSQLComparatorTypeSymbol(comparatorType) + " " + SQLUtil.preProcessValue(getValue());
-        return q;
+        StringBuilder q = new StringBuilder();
+        if (getFeatureName() != null) {
+            q.append(getFeatureName())
+                    .append(" ")
+                    .append(SQLUtil.getSQLComparatorTypeSymbol(comparatorType))
+                    .append(" ")
+                    .append(pickValue(valueType, value));
+        }
+        return q.toString();
     }
 }

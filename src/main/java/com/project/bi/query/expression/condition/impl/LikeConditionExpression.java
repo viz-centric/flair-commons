@@ -22,12 +22,14 @@ public class LikeConditionExpression extends SimpleConditionExpression {
 
     @Override
     public String interpret() {
-        String q = "";
+        StringBuilder q = new StringBuilder();
         if (getFeatureName() != null) {
-            q = getFeatureName() +
-                    " LIKE " +
-                    "'%" + getValue() + "%'";
+            q.append(getFeatureName())
+                    .append(" LIKE ")
+                    .append("'%")
+                    .append(getValue())
+                    .append("%'");
         }
-        return q;
+        return q.toString();
     }
 }
