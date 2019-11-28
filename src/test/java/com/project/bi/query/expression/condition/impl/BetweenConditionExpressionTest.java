@@ -28,7 +28,7 @@ public class BetweenConditionExpressionTest {
 
         String result = expression.interpret();
 
-        assertEquals("feature_name BETWEEN __FLAIR(timestamp, 'value') AND __FLAIR(date, 'value2')", result);
+        assertEquals("feature_name BETWEEN __FLAIR_CAST(timestamp, 'value') AND __FLAIR_CAST(date, 'value2')", result);
     }
 
     @Test
@@ -54,6 +54,6 @@ public class BetweenConditionExpressionTest {
 
         String result = expression.interpret();
 
-        assertEquals("feature_name BETWEEN __FLAIR(timestamp, 'value') AND __FLAIR(date, 'value2')", result);
+        assertEquals("feature_name BETWEEN __FLAIR_CAST(timestamp, 'value') AND __FLAIR_CAST(date, 'value2')", result);
     }
 }
