@@ -38,13 +38,11 @@ public class HavingDTO implements Interpretable {
     @Override
     public String interpret() {
         return new StringBuilder()
-                .append("(")
                 .append(featureName)
                 .append(" ")
                 .append(getSQLComparatorTypeSymbol(comparatorType))
                 .append(" ")
                 .append(SQLUtil.preProcessValue(value))
-                .append(")")
                 .toString();
     }
 

@@ -52,7 +52,7 @@ public class QueryDTOTest {
         queryDTO.setConditionExpressions(Arrays.asList(conditionExpressionDTO));
 
         String result = queryDTO.interpret();
-        assertEquals("SELECT DISTINCT book,author FROM tablename WHERE date LIKE '%2019-01-%' AND date NOT IN ('2019-01-10','2019-01-11') GROUP BY mygroup1,mygroup2 HAVING (mycolumn > 500) AND (mycolumn2 < 'test') ORDER BY book DESC LIMIT 10 OFFSET 53", result);
+        assertEquals("SELECT DISTINCT book,author FROM tablename WHERE date LIKE '%2019-01-%' AND date NOT IN ('2019-01-10','2019-01-11') GROUP BY mygroup1,mygroup2 HAVING mycolumn > 500 AND mycolumn2 < 'test' ORDER BY book DESC LIMIT 10 OFFSET 53", result);
     }
 
     @Test

@@ -15,7 +15,7 @@ public class IntervalValueTypeDTO extends ValueDTO {
 
     public String interpret() {
         return "__FLAIR_INTERVAL_OPERATION("
-                + SQLUtil.preProcessValue(value)
+                + value
                 + ", " + SQLUtil.preProcessValue(operator)
                 + ", " + SQLUtil.preProcessValue(interval)
                 + ")";
