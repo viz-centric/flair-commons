@@ -32,19 +32,6 @@ public class CompareConditionExpressionTest {
     }
 
     @Test
-    public void interpretWithValueTypeNoType() {
-        CompareConditionExpression expression = new CompareConditionExpression();
-        expression.setComparatorType(CompareConditionExpression.ComparatorType.EQ);
-        expression.setValueType(new ValueTypeDTO("value", null));
-        expression.setValue("value");
-        expression.setFeatureName("feature_name");
-
-        String result = expression.interpret();
-
-        assertEquals("feature_name = 'value'", result);
-    }
-
-    @Test
     public void interpretWithValueAndValueType() {
         CompareConditionExpression expression = new CompareConditionExpression();
         expression.setComparatorType(CompareConditionExpression.ComparatorType.EQ);

@@ -47,10 +47,4 @@ public class SortDTO implements Interpretable {
         }
     }
 
-	@Override
-	public String interpret(String connectionName) {
-        return interpret();
-	}
-
-	
 }

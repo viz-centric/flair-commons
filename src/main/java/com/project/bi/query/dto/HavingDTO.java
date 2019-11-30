@@ -23,11 +23,6 @@ public class HavingDTO implements Interpretable {
     private  String value;
     private  ComparatorType comparatorType;
 
-    @Override
-    public String interpret(String connectionName) {
-        return interpret();
-    }
-
     @Getter
     @RequiredArgsConstructor
     public enum ComparatorType {

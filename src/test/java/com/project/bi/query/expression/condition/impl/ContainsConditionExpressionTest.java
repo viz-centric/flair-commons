@@ -35,21 +35,6 @@ public class ContainsConditionExpressionTest {
     }
 
     @Test
-    public void interpretWithValueTypeNoType() {
-        ContainsConditionExpression expression = new ContainsConditionExpression();
-        expression.setFeatureName("feature_name");
-        expression.setValues(Arrays.asList("value3", "value4"));
-        expression.setValueTypes(Arrays.asList(
-                new ValueTypeDTO("value1", null),
-                new ValueTypeDTO("value2", null)
-        ));
-
-        String result = expression.interpret();
-
-        assertEquals("feature_name IN ('value1','value2')", result);
-    }
-
-    @Test
     public void interpretWithValueAndValueType() {
         ContainsConditionExpression expression = new ContainsConditionExpression();
         expression.setFeatureName("feature_name");

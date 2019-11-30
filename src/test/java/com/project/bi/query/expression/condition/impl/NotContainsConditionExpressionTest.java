@@ -35,20 +35,6 @@ public class NotContainsConditionExpressionTest {
     }
 
     @Test
-    public void interpretWithValueTypeNoType() {
-        NotContainsConditionExpression expression = new NotContainsConditionExpression();
-        expression.setFeatureName("feature_name");
-        expression.setValueTypes(Arrays.asList(
-                new ValueTypeDTO("value1", null),
-                new ValueTypeDTO("value2", null)
-        ));
-
-        String result = expression.interpret();
-
-        assertEquals("feature_name NOT IN ('value1','value2')", result);
-    }
-
-    @Test
     public void interpretWithValueAndValueType() {
         NotContainsConditionExpression expression = new NotContainsConditionExpression();
         expression.setFeatureName("feature_name");

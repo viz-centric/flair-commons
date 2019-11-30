@@ -8,14 +8,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ValueTypeDTO {
+public class ValueTypeDTO extends ValueDTO {
     private String value;
     private String type;
 
     public String interpret() {
-        if (type == null) {
-            return SQLUtil.preProcessValue(value);
-        }
         return "__FLAIR_CAST(" + type + ", " + SQLUtil.preProcessValue(value) + ")";
     }
 }
