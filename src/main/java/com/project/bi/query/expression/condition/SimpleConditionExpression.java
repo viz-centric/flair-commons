@@ -1,7 +1,7 @@
 package com.project.bi.query.expression.condition;
 
 import com.project.bi.query.SQLUtil;
-import com.project.bi.query.dto.ValueTypeDTO;
+import com.project.bi.query.dto.ValueDTO;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +11,7 @@ public abstract class SimpleConditionExpression extends AbstractConditionExpress
 
     protected String featureName;
 
-    protected String pickValue(ValueTypeDTO valueType, String value) {
+    protected String pickValue(ValueDTO valueType, String value) {
         if (valueType != null) {
             return valueType.interpret();
         }

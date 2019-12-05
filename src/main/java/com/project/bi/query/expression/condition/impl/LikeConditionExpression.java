@@ -10,16 +10,6 @@ public class LikeConditionExpression extends SimpleConditionExpression {
 
     protected String value;
 
-    /**
-     * Method that interprets certain statements and facts
-     *
-     * @return string representing the interpretation
-     */
-    @Override
-    public String interpret(String connectionName) {
-        return interpret();
-    }
-
     @Override
     public String interpret() {
         StringBuilder q = new StringBuilder();

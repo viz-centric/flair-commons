@@ -1,7 +1,7 @@
 package com.project.bi.query.expression.condition.impl;
 
 import com.project.bi.query.SQLUtil;
-import com.project.bi.query.dto.ValueTypeDTO;
+import com.project.bi.query.dto.ValueDTO;
 import com.project.bi.query.expression.condition.CollectionConditionExpression;
 
 import java.util.stream.Collectors;
@@ -9,16 +9,6 @@ import java.util.stream.Stream;
 
 public class NotContainsConditionExpression extends CollectionConditionExpression {
 
-
-    /**
-     * Method that interprets certain statements and facts
-     *
-     * @return string representing the interpretation
-     */
-    @Override
-    public String interpret(String connectionName) {
-        return interpret();
-    }
 
     @Override
     public String interpret() {
@@ -31,7 +21,7 @@ public class NotContainsConditionExpression extends CollectionConditionExpressio
             if (getValueTypes() != null) {
                 stringStream = getValueTypes()
                         .stream()
-                        .map(ValueTypeDTO::interpret);
+                        .map(ValueDTO::interpret);
             } else {
                 stringStream = getValues()
                         .stream()

@@ -32,18 +32,6 @@ public class BetweenConditionExpressionTest {
     }
 
     @Test
-    public void interpretWithValueTypeNoType() {
-        BetweenConditionExpression expression = new BetweenConditionExpression();
-        expression.setFeatureName("feature_name");
-        expression.setValueType(new ValueTypeDTO("value", null));
-        expression.setSecondValueType(new ValueTypeDTO("value2", null));
-
-        String result = expression.interpret();
-
-        assertEquals("feature_name BETWEEN 'value' AND 'value2'", result);
-    }
-
-    @Test
     public void interpretWithValueAndValueType() {
         BetweenConditionExpression expression = new BetweenConditionExpression();
         expression.setFeatureName("feature_name");

@@ -23,11 +23,6 @@ public class HavingDTO implements Interpretable {
     private  String value;
     private  ComparatorType comparatorType;
 
-    @Override
-    public String interpret(String connectionName) {
-        return interpret();
-    }
-
     @Getter
     @RequiredArgsConstructor
     public enum ComparatorType {
@@ -43,13 +38,11 @@ public class HavingDTO implements Interpretable {
     @Override
     public String interpret() {
         return new StringBuilder()
-                .append("(")
                 .append(featureName)
                 .append(" ")
                 .append(getSQLComparatorTypeSymbol(comparatorType))
                 .append(" ")
                 .append(SQLUtil.preProcessValue(value))
-                .append(")")
                 .toString();
     }
 

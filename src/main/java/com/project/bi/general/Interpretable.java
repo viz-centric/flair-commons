@@ -11,7 +11,4 @@ public interface Interpretable {
      * @return string representing the interpretation
      */
     String interpret();
-
-    @Deprecated
-    String interpret(String connectionName);
 }
