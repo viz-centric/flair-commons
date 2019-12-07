@@ -16,4 +16,16 @@ public class LikeConditionExpressionTest {
 
         assertEquals("feature_name LIKE '%value1%'", result);
     }
+
+    @Test
+    public void interpretCaseInsensitive() {
+        LikeConditionExpression expression = new LikeConditionExpression();
+        expression.setFeatureName("feature_name");
+        expression.setValue("value1");
+        expression.setCaseInsensitive(true);
+
+        String result = expression.interpret();
+
+        assertEquals("UPPER(feature_name) LIKE UPPER('%value1%')", result);
+    }
 }
