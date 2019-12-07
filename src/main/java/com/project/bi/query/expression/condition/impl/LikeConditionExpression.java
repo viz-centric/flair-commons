@@ -8,18 +8,31 @@ import lombok.Setter;
 @Setter
 public class LikeConditionExpression extends SimpleConditionExpression {
 
-    protected String value;
+    private String value;
+    private boolean caseInsensitive;
 
     @Override
     public String interpret() {
         StringBuilder q = new StringBuilder();
         if (getFeatureName() != null) {
-            q.append(getFeatureName())
+            q.append(toFeatureName())
                     .append(" LIKE ")
-                    .append("'%")
-                    .append(getValue())
-                    .append("%'");
+                    .append(toValue());
         }
         return q.toString();
+    }
+
+    private String toValue() {
+        if (caseInsensitive) {
+            return "UPPER('%" + value + "%')";
+        }
+        return "'%" + value + "%'";
+    }
+
+    private String toFeatureName() {
+        if (caseInsensitive) {
+            return "UPPER(" + featureName + ")";
+        }
+        return featureName;
     }
 }
