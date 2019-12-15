@@ -19,6 +19,7 @@ import lombok.NoArgsConstructor;
 )
 @JsonSubTypes({
         @JsonSubTypes.Type(value = ValueTypeDTO.class, name = "valueType"),
+        @JsonSubTypes.Type(value = LikeFeatureNameDTO.class, name = "likeValueType"),
         @JsonSubTypes.Type(value = IntervalValueTypeDTO.class, name = "intervalValueType"),
 })
 public class ValueDTO implements Interpretable {
