@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class LikeFeatureNameDTO extends ValueDTO {
+public class LikeFeatureNameDTO {
     private String featureName;
     private String type;
 
