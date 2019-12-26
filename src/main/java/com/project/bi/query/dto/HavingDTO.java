@@ -19,9 +19,9 @@ import lombok.ToString;
 @ToString
 public class HavingDTO implements Interpretable {
 
-    private  String featureName;
-    private  String value;
-    private  ComparatorType comparatorType;
+    private FieldDTO feature;
+    private String value;
+    private ComparatorType comparatorType;
 
     @Getter
     @RequiredArgsConstructor
@@ -37,13 +37,11 @@ public class HavingDTO implements Interpretable {
 
     @Override
     public String interpret() {
-        return new StringBuilder()
-                .append(featureName)
-                .append(" ")
-                .append(getSQLComparatorTypeSymbol(comparatorType))
-                .append(" ")
-                .append(SQLUtil.preProcessValue(value))
-                .toString();
+        return feature.interpret() +
+                " " +
+                getSQLComparatorTypeSymbol(comparatorType) +
+                " " +
+                SQLUtil.preProcessValue(value);
     }
 
     private String getSQLComparatorTypeSymbol(ComparatorType comparatorType) {

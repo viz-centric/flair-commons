@@ -26,6 +26,7 @@ public class ValueDTO implements Interpretable {
 
     private String value;
 
+    @Override
     public String interpret() {
         return SQLUtil.preProcessValue(value);
     }

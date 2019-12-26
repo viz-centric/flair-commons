@@ -20,8 +20,8 @@ import java.util.stream.Collectors;
 public class QueryDTO implements Interpretable {
 
     private String source;
-    private List<String> fields = new ArrayList<>();
-    private List<String> groupBy = new ArrayList<>();
+    private List<FieldDTO> fields = new ArrayList<>();
+    private List<FieldDTO> groupBy = new ArrayList<>();
     private Long limit;
     private Long offset;
     private List<HavingDTO> having = new ArrayList<>();
@@ -45,12 +45,6 @@ public class QueryDTO implements Interpretable {
         this.orders = new ArrayList<>(queryDTO.getOrders());
         this.metaRetrieved = queryDTO.isMetaRetrieved();
     }
-
-    @Deprecated
-    public String interpret(String connectionName) {
-        return interpret();
-    }
-
 
     private ConditionExpression mergeConditionExpression() {
         ConditionExpression conditionExpression = null;
@@ -79,7 +73,9 @@ public class QueryDTO implements Interpretable {
 
         builder.append("SELECT ")
                 .append(distinct ? "DISTINCT " : "")
-                .append(fields.isEmpty() ? "*" : fields.stream().map(it -> it).collect(Collectors.joining(",")))
+                .append(fields.isEmpty() ? "*" : fields.stream()
+                        .map(FieldDTO::interpret)
+                        .collect(Collectors.joining(",")))
                 .append(" FROM ")
                 .append(source);
 
@@ -94,19 +90,25 @@ public class QueryDTO implements Interpretable {
         if (!groupBy.isEmpty()) {
             builder
                     .append(" GROUP BY ")
-                    .append(groupBy.stream().collect(Collectors.joining(",")));
+                    .append(groupBy.stream()
+                            .map(FieldDTO::interpret)
+                            .collect(Collectors.joining(",")));
 
         }
 
         if (!having.isEmpty()) {
             builder
                     .append(" HAVING ")
-                    .append(having.stream().map(HavingDTO::interpret).collect(Collectors.joining(" AND ")));
+                    .append(having.stream()
+                            .map(HavingDTO::interpret)
+                            .collect(Collectors.joining(" AND ")));
         }
 
         if (!orders.isEmpty()) {
             builder.append(" ORDER BY ")
-                    .append(orders.stream().map(SortDTO::interpret).collect(Collectors.joining(",")));
+                    .append(orders.stream()
+                            .map(SortDTO::interpret)
+                            .collect(Collectors.joining(",")));
 
         }
 
