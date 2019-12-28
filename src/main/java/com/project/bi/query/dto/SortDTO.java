@@ -17,7 +17,7 @@ import lombok.ToString;
 @ToString
 public class SortDTO implements Interpretable {
 
-    private String featureName;
+    private FieldDTO feature;
 
     private Direction direction = Direction.ASC;
 
@@ -30,7 +30,7 @@ public class SortDTO implements Interpretable {
     
     @Override
     public String interpret() {
-        return featureName + " " + direction.getValue();
+        return feature.interpret() + " " + direction.getValue();
     }
 
     public enum Direction {
