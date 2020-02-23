@@ -16,6 +16,6 @@ public class ValueTypeDTO extends ValueDTO {
 
     @Override
     public String interpret() {
-        return "__FLAIR_CAST(" + type + ", " + SQLUtil.preProcessValue(value) + ")";
+        return "__FLAIR_CAST(" + type + ", " + SQLUtil.preProcessValue(SQLUtil.sanitize(value)) + ")";
     }
 }
