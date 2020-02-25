@@ -26,7 +26,7 @@ public class LikeConditionExpressionTest {
 
         String result = expression.interpret();
 
-        assertEquals("__FLAIR_CAST(varchar, feature_name) LIKE '%value1%'", result);
+        assertEquals("__FLAIR_CAST(flair_string, feature_name) LIKE '%value1%'", result);
     }
 
     @Test
@@ -50,6 +50,6 @@ public class LikeConditionExpressionTest {
 
         String result = expression.interpret();
 
-        assertEquals("UPPER(__FLAIR_CAST(varchar, feature_name)) LIKE UPPER('%value1%')", result);
+        assertEquals("UPPER(__FLAIR_CAST(flair_string, feature_name)) LIKE UPPER('%value1%')", result);
     }
 }

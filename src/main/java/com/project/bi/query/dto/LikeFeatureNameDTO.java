@@ -14,6 +14,6 @@ public class LikeFeatureNameDTO implements Interpretable {
 
     @Override
     public String interpret() {
-        return "__FLAIR_CAST(" + type + ", " + featureName + ")";
+        return "__FLAIR_CAST(flair_string, " + featureName + ")";
     }
 }
