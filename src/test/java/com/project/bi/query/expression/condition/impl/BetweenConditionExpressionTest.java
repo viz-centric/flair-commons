@@ -1,6 +1,6 @@
 package com.project.bi.query.expression.condition.impl;
 
-import com.project.bi.query.dto.ValueTypeDTO;
+import com.project.bi.query.dto.CastValueTypeDTO;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -23,8 +23,8 @@ public class BetweenConditionExpressionTest {
     public void interpretWithValueType() {
         BetweenConditionExpression expression = new BetweenConditionExpression();
         expression.setFeatureName("feature_name");
-        expression.setValueType(new ValueTypeDTO("value", "timestamp"));
-        expression.setSecondValueType(new ValueTypeDTO("value2", "date"));
+        expression.setValueType(new CastValueTypeDTO("value", "timestamp"));
+        expression.setSecondValueType(new CastValueTypeDTO("value2", "date"));
 
         String result = expression.interpret();
 
@@ -37,8 +37,8 @@ public class BetweenConditionExpressionTest {
         expression.setFeatureName("feature_name");
         expression.setSecondValue("second value");
         expression.setValue("value");
-        expression.setValueType(new ValueTypeDTO("value", "timestamp"));
-        expression.setSecondValueType(new ValueTypeDTO("value2", "date"));
+        expression.setValueType(new CastValueTypeDTO("value", "timestamp"));
+        expression.setSecondValueType(new CastValueTypeDTO("value2", "date"));
 
         String result = expression.interpret();
 

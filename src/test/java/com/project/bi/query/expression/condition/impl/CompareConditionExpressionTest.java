@@ -1,6 +1,6 @@
 package com.project.bi.query.expression.condition.impl;
 
-import com.project.bi.query.dto.ValueTypeDTO;
+import com.project.bi.query.dto.CastValueTypeDTO;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -23,7 +23,7 @@ public class CompareConditionExpressionTest {
     public void interpretWithValueType() {
         CompareConditionExpression expression = new CompareConditionExpression();
         expression.setComparatorType(CompareConditionExpression.ComparatorType.EQ);
-        expression.setValueType(new ValueTypeDTO("value", "timestamp"));
+        expression.setValueType(new CastValueTypeDTO("value", "timestamp"));
         expression.setFeatureName("feature_name");
 
         String result = expression.interpret();
@@ -35,7 +35,7 @@ public class CompareConditionExpressionTest {
     public void interpretWithValueAndValueType() {
         CompareConditionExpression expression = new CompareConditionExpression();
         expression.setComparatorType(CompareConditionExpression.ComparatorType.EQ);
-        expression.setValueType(new ValueTypeDTO("value", "timestamp"));
+        expression.setValueType(new CastValueTypeDTO("value", "timestamp"));
         expression.setValue("value");
         expression.setFeatureName("feature_name");
 

@@ -7,10 +7,26 @@ import static org.junit.Assert.assertEquals;
 public class ValueTypeDTOTest {
 
     @Test
-    public void interpret() {
-        ValueTypeDTO dto = new ValueTypeDTO();
-        dto.setType("timestamp");
-        dto.setValue("2019-10-11");
-        assertEquals("__FLAIR_CAST(timestamp, '2019-10-11')", dto.interpret());
+    public void interpretFlairNow() {
+        ValueTypeDTO dto = new ValueTypeDTO("__FLAIR_NOW()", null);
+        assertEquals("__FLAIR_NOW()", dto.interpret());
+    }
+
+    @Test
+    public void interpretFlairNowWithParams() {
+        ValueTypeDTO dto = new ValueTypeDTO("__FLAIR_NOW(timestamp)", null);
+        assertEquals("__FLAIR_NOW(timestamp)", dto.interpret());
+    }
+
+    @Test
+    public void interpretFlairNowWithMultipleParams() {
+        ValueTypeDTO dto = new ValueTypeDTO("__FLAIR_NOW(timestamp, 'test 123/_\\')", null);
+        assertEquals("__FLAIR_NOW(timestamp, 'test 123/_\\')", dto.interpret());
+    }
+
+    @Test
+    public void interpretThrowsErrorForUnknownValue() {
+        ValueTypeDTO dto = new ValueTypeDTO("some value()", "varchar");
+        assertEquals("__FLAIR_CAST(varchar, 'some value()')", dto.interpret());
     }
 }

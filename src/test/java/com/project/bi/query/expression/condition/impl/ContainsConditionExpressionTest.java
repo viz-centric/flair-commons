@@ -1,6 +1,6 @@
 package com.project.bi.query.expression.condition.impl;
 
-import com.project.bi.query.dto.ValueTypeDTO;
+import com.project.bi.query.dto.CastValueTypeDTO;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -25,8 +25,8 @@ public class ContainsConditionExpressionTest {
         ContainsConditionExpression expression = new ContainsConditionExpression();
         expression.setFeatureName("feature_name");
         expression.setValueTypes(Arrays.asList(
-                new ValueTypeDTO("value1", "timestamp"),
-                new ValueTypeDTO("value2", "date")
+                new CastValueTypeDTO("value1", "timestamp"),
+                new CastValueTypeDTO("value2", "date")
         ));
 
         String result = expression.interpret();
@@ -40,8 +40,8 @@ public class ContainsConditionExpressionTest {
         expression.setFeatureName("feature_name");
         expression.setValues(Arrays.asList("value3", "value4"));
         expression.setValueTypes(Arrays.asList(
-                new ValueTypeDTO("value1", "timestamp"),
-                new ValueTypeDTO("value2", "date")
+                new CastValueTypeDTO("value1", "timestamp"),
+                new CastValueTypeDTO("value2", "date")
         ));
 
         String result = expression.interpret();
