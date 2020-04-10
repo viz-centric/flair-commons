@@ -22,6 +22,7 @@ public class HavingDTO implements Interpretable {
     private FieldDTO feature;
     private String value;
     private ComparatorType comparatorType;
+    private QueryDTO valueQuery;
 
     @Getter
     @RequiredArgsConstructor
@@ -41,7 +42,7 @@ public class HavingDTO implements Interpretable {
                 " " +
                 getSQLComparatorTypeSymbol(comparatorType) +
                 " " +
-                SQLUtil.preProcessValue(value);
+                (valueQuery != null ? "(" + valueQuery.interpret() + ")" : SQLUtil.preProcessValue(value));
     }
 
     private String getSQLComparatorTypeSymbol(ComparatorType comparatorType) {
