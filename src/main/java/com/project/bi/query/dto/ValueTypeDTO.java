@@ -23,6 +23,10 @@ public class ValueTypeDTO extends ValueDTO {
 
     @Override
     public String interpret() {
+        if (value == null) {
+            return null;
+        }
+
         boolean isAllowed = SUPPORTED_VALUE_TYPES
                 .stream()
                 .anyMatch(p -> p.matcher(value).matches());

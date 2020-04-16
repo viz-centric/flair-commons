@@ -35,6 +35,33 @@ public class NotContainsConditionExpressionTest {
     }
 
     @Test
+    public void interpretWithValueTypeAndNullValue() {
+        NotContainsConditionExpression expression = new NotContainsConditionExpression();
+        expression.setFeatureName("feature_name");
+        expression.setValueTypes(Arrays.asList(
+                new CastValueTypeDTO(null, "timestamp"),
+                new CastValueTypeDTO("value2", "date")
+        ));
+
+        String result = expression.interpret();
+
+        assertEquals("feature_name NOT IN (__FLAIR_CAST(date, 'value2')) AND feature_name IS NOT NULL", result);
+    }
+
+    @Test
+    public void interpretWithValueTypeAndNullValueOnly() {
+        NotContainsConditionExpression expression = new NotContainsConditionExpression();
+        expression.setFeatureName("feature_name");
+        expression.setValueTypes(Arrays.asList(
+                new CastValueTypeDTO(null, "timestamp")
+        ));
+
+        String result = expression.interpret();
+
+        assertEquals("feature_name IS NOT NULL", result);
+    }
+
+    @Test
     public void interpretWithValueAndValueType() {
         NotContainsConditionExpression expression = new NotContainsConditionExpression();
         expression.setFeatureName("feature_name");
