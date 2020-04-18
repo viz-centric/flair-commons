@@ -35,6 +35,33 @@ public class ContainsConditionExpressionTest {
     }
 
     @Test
+    public void interpretWithValueTypeAndNullValue() {
+        ContainsConditionExpression expression = new ContainsConditionExpression();
+        expression.setFeatureName("feature_name");
+        expression.setValueTypes(Arrays.asList(
+                new CastValueTypeDTO(null, "timestamp"),
+                new CastValueTypeDTO("value2", "date")
+        ));
+
+        String result = expression.interpret();
+
+        assertEquals("feature_name IN (__FLAIR_CAST(date, 'value2')) OR feature_name IS NULL", result);
+    }
+
+    @Test
+    public void interpretWithValueTypeAndNullValueOnly() {
+        ContainsConditionExpression expression = new ContainsConditionExpression();
+        expression.setFeatureName("feature_name");
+        expression.setValueTypes(Arrays.asList(
+                new CastValueTypeDTO(null, "timestamp")
+        ));
+
+        String result = expression.interpret();
+
+        assertEquals("feature_name IS NULL", result);
+    }
+
+    @Test
     public void interpretWithValueAndValueType() {
         ContainsConditionExpression expression = new ContainsConditionExpression();
         expression.setFeatureName("feature_name");
