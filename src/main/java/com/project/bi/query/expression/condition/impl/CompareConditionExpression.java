@@ -1,8 +1,9 @@
 package com.project.bi.query.expression.condition.impl;
 
 import com.project.bi.query.SQLUtil;
+import com.project.bi.query.dto.FeaturePropertyDTO;
 import com.project.bi.query.dto.ValueDTO;
-import com.project.bi.query.expression.condition.SimpleConditionExpression;
+import com.project.bi.query.expression.condition.AbstractConditionExpression;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,13 +13,19 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CompareConditionExpression extends SimpleConditionExpression {
+public class CompareConditionExpression extends AbstractConditionExpression {
 
     @Deprecated // use valueType instead
-    protected String value;
-    protected ValueDTO valueType;
+    private String value;
 
-    protected ComparatorType comparatorType;
+    @Deprecated // use featureProperty instead
+    private String featureName;
+
+    private ValueDTO valueType;
+
+    private FeaturePropertyDTO featureProperty;
+
+    private ComparatorType comparatorType;
 
     public enum ComparatorType {
 
@@ -43,13 +50,25 @@ public class CompareConditionExpression extends SimpleConditionExpression {
     @Override
     public String interpret() {
         StringBuilder q = new StringBuilder();
-        if (getFeatureName() != null) {
-            q.append(getFeatureName())
-                    .append(" ")
-                    .append(SQLUtil.getSQLComparatorTypeSymbol(comparatorType))
-                    .append(" ")
-                    .append(pickValue(valueType, value));
-        }
+        q.append(interpretFeature())
+                .append(" ")
+                .append(SQLUtil.getSQLComparatorTypeSymbol(comparatorType))
+                .append(" ")
+                .append(pickValue(valueType, value));
         return q.toString();
+    }
+
+    private String interpretFeature() {
+        if (featureProperty != null) {
+            return featureProperty.interpret();
+        }
+        return getFeatureName();
+    }
+
+    private String pickValue(ValueDTO valueType, String value) {
+        if (valueType != null) {
+            return valueType.interpret();
+        }
+        return SQLUtil.preProcessValue(value);
     }
 }

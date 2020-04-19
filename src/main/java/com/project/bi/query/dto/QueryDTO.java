@@ -19,7 +19,9 @@ import java.util.stream.Collectors;
 @ToString
 public class QueryDTO implements Interpretable {
 
+    @Deprecated // use querySource instead
     private String source;
+    private QuerySourceDTO querySource;
     private List<FieldDTO> fields = new ArrayList<>();
     private List<FieldDTO> groupBy = new ArrayList<>();
     private Long limit;
@@ -35,6 +37,7 @@ public class QueryDTO implements Interpretable {
 
     public QueryDTO(QueryDTO queryDTO) {
         this.source = queryDTO.getSource();
+        this.querySource = queryDTO.getQuerySource();
         this.fields = new ArrayList<>(queryDTO.getFields());
         this.groupBy = new ArrayList<>(queryDTO.getGroupBy());
         this.limit = queryDTO.getLimit();
@@ -77,7 +80,7 @@ public class QueryDTO implements Interpretable {
                         .map(FieldDTO::interpret)
                         .collect(Collectors.joining(",")))
                 .append(" FROM ")
-                .append(source);
+                .append(interpretSource());
 
         ConditionExpression where = mergeConditionExpression();
 
@@ -125,7 +128,12 @@ public class QueryDTO implements Interpretable {
         return builder.toString();
 	}
 
+    private String interpretSource() {
+        if (querySource != null) {
+            return querySource.interpret();
+        }
+        return source;
+    }
 
-	
 
 }

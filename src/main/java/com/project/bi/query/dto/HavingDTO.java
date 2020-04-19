@@ -22,7 +22,7 @@ public class HavingDTO implements Interpretable {
     private FieldDTO feature;
     private String value;
     private ComparatorType comparatorType;
-    private QueryDTO valueQuery;
+    private QueryExpDTO valueQuery;
 
     @Getter
     @RequiredArgsConstructor

@@ -14,7 +14,7 @@ public class QueryDTOTest {
     @Test
     public void interpretTablename() {
         QueryDTO queryDTO = new QueryDTO();
-        queryDTO.setSource("tablename");
+        queryDTO.setQuerySource(new QuerySourceDTO("tablename", null));
 
         String result = queryDTO.interpret();
         assertEquals("SELECT * FROM tablename", result);
@@ -23,7 +23,7 @@ public class QueryDTOTest {
     @Test
     public void interpretAll() {
         QueryDTO queryDTO = new QueryDTO();
-        queryDTO.setSource("tablename");
+        queryDTO.setQuerySource(new QuerySourceDTO("tablename", null));
         queryDTO.setDistinct(true);
         queryDTO.setLimit(10L);
         queryDTO.setOffset(53L);
@@ -68,7 +68,7 @@ public class QueryDTOTest {
     @Test
     public void copy() {
         QueryDTO queryDTO = new QueryDTO();
-        queryDTO.setSource("tablename");
+        queryDTO.setQuerySource(new QuerySourceDTO("tablename", null));
         queryDTO.setDistinct(true);
         queryDTO.setLimit(10L);
         queryDTO.setOffset(53L);
