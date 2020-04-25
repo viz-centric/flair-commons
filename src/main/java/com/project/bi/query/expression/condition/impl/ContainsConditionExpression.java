@@ -3,21 +3,26 @@ package com.project.bi.query.expression.condition.impl;
 import com.project.bi.query.SQLUtil;
 import com.project.bi.query.dto.ValueDTO;
 import com.project.bi.query.expression.condition.CollectionConditionExpression;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class ContainsConditionExpression extends CollectionConditionExpression {
 
     @Override
     public String interpret() {
         StringBuilder str = new StringBuilder();
-        if (getFeatureName() != null) {
+        String feature = getFeatureName();
+        if (feature != null) {
 
             String expr = composeInExpr();
             if (expr.length() > 0) {
-                str.append(getFeatureName())
+                str.append(feature)
                         .append(expr);
             }
 
@@ -28,7 +33,7 @@ public class ContainsConditionExpression extends CollectionConditionExpression {
             }
 
             if (isValueNull) {
-                str.append(getFeatureName())
+                str.append(feature)
                         .append(" IS NULL");
             }
         }
@@ -69,4 +74,5 @@ public class ContainsConditionExpression extends CollectionConditionExpression {
                 String.join(",", strings) +
                 ")";
     }
+
 }
