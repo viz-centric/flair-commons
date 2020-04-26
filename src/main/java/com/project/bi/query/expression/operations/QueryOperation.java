@@ -12,11 +12,11 @@ public class QueryOperation implements Operation {
 
     public static final String TYPE = "query";
 
-    private QueryDTO query;
+    private QueryDTO value;
 
     @Override
     public String interpret() {
-        return "(" + query.interpret() + ")";
+        return "(" + value.interpret() + ")";
     }
 
 }

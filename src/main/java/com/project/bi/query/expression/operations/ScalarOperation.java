@@ -13,11 +13,11 @@ public class ScalarOperation implements Operation {
 
     public static final String TYPE = "scalar";
 
-    private String scalar;
+    private String value;
 
     @Override
     public String interpret() {
-        return preProcessValue(scalar);
+        return preProcessValue(value);
     }
 
 }
