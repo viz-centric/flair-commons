@@ -23,14 +23,14 @@ public class BetweenConditionExpression extends SimpleConditionExpression {
 
     protected ValueDTO secondValueType;
 
-
     @Override
     public String interpret() {
-        if (getFeatureName() == null) {
+        String feature = getFeatureName();
+        if (feature == null) {
             return "";
         }
 
-        return getFeatureName()
+        return feature
                 + " BETWEEN "
                 + pickValue(valueType, value)
                 + " AND "

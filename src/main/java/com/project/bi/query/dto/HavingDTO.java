@@ -1,12 +1,11 @@
 package com.project.bi.query.dto;
 
 import com.project.bi.general.Interpretable;
-import com.project.bi.query.SQLUtil;
+import com.project.bi.query.expression.operations.Operation;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -20,12 +19,9 @@ import lombok.ToString;
 public class HavingDTO implements Interpretable {
 
     private FieldDTO feature;
-    private String value;
     private ComparatorType comparatorType;
-    private QueryDTO valueQuery;
+    private Operation operation;
 
-    @Getter
-    @RequiredArgsConstructor
     public enum ComparatorType {
         UNKNOWN,
         EQ,
@@ -42,7 +38,7 @@ public class HavingDTO implements Interpretable {
                 " " +
                 getSQLComparatorTypeSymbol(comparatorType) +
                 " " +
-                (valueQuery != null ? "(" + valueQuery.interpret() + ")" : SQLUtil.preProcessValue(value));
+                operation.interpret();
     }
 
     private String getSQLComparatorTypeSymbol(ComparatorType comparatorType) {

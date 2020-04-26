@@ -3,6 +3,7 @@ package com.project.bi.query.dto;
 import com.project.bi.query.expression.condition.impl.AndConditionExpression;
 import com.project.bi.query.expression.condition.impl.LikeConditionExpression;
 import com.project.bi.query.expression.condition.impl.NotContainsConditionExpression;
+import com.project.bi.query.expression.operations.ScalarOperation;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -14,7 +15,7 @@ public class QueryDTOTest {
     @Test
     public void interpretTablename() {
         QueryDTO queryDTO = new QueryDTO();
-        queryDTO.setSource("tablename");
+        queryDTO.setQuerySource(new QuerySourceDTO("tablename", null));
 
         String result = queryDTO.interpret();
         assertEquals("SELECT * FROM tablename", result);
@@ -23,7 +24,7 @@ public class QueryDTOTest {
     @Test
     public void interpretAll() {
         QueryDTO queryDTO = new QueryDTO();
-        queryDTO.setSource("tablename");
+        queryDTO.setQuerySource(new QuerySourceDTO("tablename", null));
         queryDTO.setDistinct(true);
         queryDTO.setLimit(10L);
         queryDTO.setOffset(53L);
@@ -39,12 +40,12 @@ public class QueryDTOTest {
                 HavingDTO.builder()
                         .comparatorType(HavingDTO.ComparatorType.GT)
                         .feature(new FieldDTO("mycolumn"))
-                        .value("500")
+                        .operation(new ScalarOperation("500"))
                         .build(),
                 HavingDTO.builder()
                         .comparatorType(HavingDTO.ComparatorType.LT)
                         .feature(new FieldDTO("mycolumn2", "COUNT", null))
-                        .value("test")
+                        .operation(new ScalarOperation("test"))
                         .build()
         ));
         ConditionExpressionDTO conditionExpressionDTO = new ConditionExpressionDTO();
@@ -68,7 +69,7 @@ public class QueryDTOTest {
     @Test
     public void copy() {
         QueryDTO queryDTO = new QueryDTO();
-        queryDTO.setSource("tablename");
+        queryDTO.setQuerySource(new QuerySourceDTO("tablename", null));
         queryDTO.setDistinct(true);
         queryDTO.setLimit(10L);
         queryDTO.setOffset(53L);
