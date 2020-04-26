@@ -14,6 +14,10 @@ public class QuerySourceDTO implements Interpretable {
     private String source;
     private String alias;
 
+    public QuerySourceDTO(String source) {
+        this.source = source;
+    }
+
     @Override
     public String interpret() {
         return sanitize(source) + (alias == null ? "" : " " + sanitize(alias));

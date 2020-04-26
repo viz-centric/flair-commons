@@ -3,6 +3,7 @@ package com.project.bi.query.dto;
 import com.project.bi.query.expression.condition.impl.AndConditionExpression;
 import com.project.bi.query.expression.condition.impl.LikeConditionExpression;
 import com.project.bi.query.expression.condition.impl.NotContainsConditionExpression;
+import com.project.bi.query.expression.operations.ScalarOperation;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -39,12 +40,12 @@ public class QueryDTOTest {
                 HavingDTO.builder()
                         .comparatorType(HavingDTO.ComparatorType.GT)
                         .feature(new FieldDTO("mycolumn"))
-                        .value("500")
+                        .operation(new ScalarOperation("500"))
                         .build(),
                 HavingDTO.builder()
                         .comparatorType(HavingDTO.ComparatorType.LT)
                         .feature(new FieldDTO("mycolumn2", "COUNT", null))
-                        .value("test")
+                        .operation(new ScalarOperation("test"))
                         .build()
         ));
         ConditionExpressionDTO conditionExpressionDTO = new ConditionExpressionDTO();
