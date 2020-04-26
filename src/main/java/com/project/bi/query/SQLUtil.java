@@ -1,11 +1,6 @@
 package com.project.bi.query;
 
-import com.project.bi.query.dto.ValueDTO;
-import com.project.bi.query.dto.ValueTypeDTO;
 import com.project.bi.query.expression.condition.impl.CompareConditionExpression;
-
-import java.util.List;
-import java.util.Optional;
 
 public class SQLUtil {
     /**
@@ -86,16 +81,4 @@ public class SQLUtil {
                 .replaceAll("'", "''");
     }
 
-    public static Optional<String> getFirstValueType(List<ValueDTO> valueTypes) {
-        if (valueTypes == null) {
-            return Optional.empty();
-        }
-        return valueTypes
-                .stream()
-                .filter(p -> p instanceof ValueTypeDTO)
-                .map(ValueTypeDTO.class::cast)
-                .map(p -> p.getType())
-                .filter(p -> p != null)
-                .findFirst();
-    }
 }

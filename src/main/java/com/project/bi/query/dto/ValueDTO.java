@@ -21,6 +21,7 @@ import lombok.NoArgsConstructor;
         @JsonSubTypes.Type(value = ValueTypeDTO.class, name = "predefinedValueType"),
         @JsonSubTypes.Type(value = ValueTypeDTO.class, name = "valueType"),
         @JsonSubTypes.Type(value = FeatureValueTypeDTO.class, name = "featureValueType"),
+        @JsonSubTypes.Type(value = TruncValueTypeDTO.class, name = "truncValueType"),
         @JsonSubTypes.Type(value = LikeFeatureNameDTO.class, name = "likeValueType"),
         @JsonSubTypes.Type(value = IntervalValueTypeDTO.class, name = "intervalValueType"),
 })
