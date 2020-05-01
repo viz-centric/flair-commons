@@ -8,7 +8,7 @@ import com.project.bi.general.Interpretable;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME)
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = MultiplyOperation.class, name = MultiplyOperation.TYPE),
+        @JsonSubTypes.Type(value = ArithmeticOperation.class, name = ArithmeticOperation.TYPE),
         @JsonSubTypes.Type(value = ScalarOperation.class, name = ScalarOperation.TYPE),
         @JsonSubTypes.Type(value = QueryOperation.class, name = QueryOperation.TYPE),
 })

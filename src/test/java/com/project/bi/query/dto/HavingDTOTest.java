@@ -2,7 +2,7 @@ package com.project.bi.query.dto;
 
 import com.project.bi.query.expression.condition.impl.BetweenConditionExpression;
 import com.project.bi.query.expression.condition.impl.CompareConditionExpression;
-import com.project.bi.query.expression.operations.MultiplyOperation;
+import com.project.bi.query.expression.operations.ArithmeticOperation;
 import com.project.bi.query.expression.operations.OperationSign;
 import com.project.bi.query.expression.operations.QueryOperation;
 import com.project.bi.query.expression.operations.ScalarOperation;
@@ -44,7 +44,7 @@ public class HavingDTOTest {
                 )
         ));
         havingDTO.setOperation(
-                new MultiplyOperation(new QueryOperation(valueQuery), null, null)
+                new QueryOperation(valueQuery)
         );
 
         Assert.assertEquals("count(order_qty) > (SELECT max(transactions_summary) as transactions_summary FROM ecommerce WHERE order_date BETWEEN __FLAIR_INTERVAL_OPERATION(__FLAIR_NOW(), '-', '7000 days') AND __FLAIR_NOW())",
@@ -82,14 +82,17 @@ public class HavingDTOTest {
                 )
         ));
         havingDTO.setOperation(
-                new MultiplyOperation(
-                        new QueryOperation(valueQuery),
-                        OperationSign.MULTIPLY,
-                        new ScalarOperation("0.9")
+                new ArithmeticOperation(
+                        Arrays.asList(
+                                new QueryOperation(valueQuery),
+                                new ScalarOperation("0.9"),
+                                new ScalarOperation("15")
+                        ),
+                        OperationSign.MULTIPLY
                 )
         );
 
-        Assert.assertEquals("count(order_qty) > ((SELECT max(transactions_summary) as transactions_summary FROM ecommerce A WHERE order_date BETWEEN __FLAIR_INTERVAL_OPERATION(__FLAIR_NOW(), '-', '7000 days') AND __FLAIR_NOW() AND orders.order_count > __FLAIR_CAST(number, 24)) * 0.9)",
+        Assert.assertEquals("count(order_qty) > ((SELECT max(transactions_summary) as transactions_summary FROM ecommerce A WHERE order_date BETWEEN __FLAIR_INTERVAL_OPERATION(__FLAIR_NOW(), '-', '7000 days') AND __FLAIR_NOW() AND orders.order_count > __FLAIR_CAST(number, 24)) * 0.9 * 15)",
                 havingDTO.interpret());
     }
 }
