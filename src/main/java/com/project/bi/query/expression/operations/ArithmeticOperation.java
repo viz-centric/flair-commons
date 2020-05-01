@@ -23,15 +23,14 @@ public class ArithmeticOperation extends CompositeOperation {
 
     @Override
     public String interpret() {
+        if (getOperations().isEmpty()) {
+            return "";
+        }
         return "(" +
                 getOperations()
                         .stream()
                         .map(o -> o.interpret())
-                        .collect(Collectors.joining(
-                                " "
-                                        + value.getSign()
-                                        + " "
-                        ))
+                        .collect(Collectors.joining(" " + value.getSign() + " "))
                 + ")";
     }
 
