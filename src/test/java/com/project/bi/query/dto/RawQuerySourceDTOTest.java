@@ -11,4 +11,10 @@ public class RawQuerySourceDTOTest {
         RawQuerySourceDTO dto = new RawQuerySourceDTO("select * from db");
         assertEquals("__FLAIR_RAW([[select * from db]])", dto.interpret());
     }
+
+    @Test
+    public void interpretWithAlias() {
+        RawQuerySourceDTO dto = new RawQuerySourceDTO("select * from db", "some_table");
+        assertEquals("__FLAIR_RAW([[select * from db]]) AS some_table", dto.interpret());
+    }
 }
