@@ -7,18 +7,18 @@ import lombok.NoArgsConstructor;
 import static com.project.bi.query.SQLUtil.sanitize;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class QuerySourceDTO implements QuerySource {
-    private String source;
+@AllArgsConstructor
+public class RawQuerySourceDTO implements QuerySource {
+    private String rawSql;
     private String alias;
 
-    public QuerySourceDTO(String source) {
-        this.source = source;
+    public RawQuerySourceDTO(String rawSql) {
+        this.rawSql = rawSql;
     }
 
     @Override
     public String interpret() {
-        return sanitize(source) + (alias == null ? "" : " " + sanitize(alias));
+        return "__FLAIR_RAW([[" + rawSql + "]])" + (alias == null ? "" : " AS " + sanitize(alias));
     }
 }

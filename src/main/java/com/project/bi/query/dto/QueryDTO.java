@@ -21,7 +21,7 @@ public class QueryDTO implements Interpretable {
 
     @Deprecated // use querySource instead
     private String source;
-    private QuerySourceDTO querySource;
+    private QuerySource querySource;
     private List<FieldDTO> fields = new ArrayList<>();
     private List<FieldDTO> groupBy = new ArrayList<>();
     private Long limit;
