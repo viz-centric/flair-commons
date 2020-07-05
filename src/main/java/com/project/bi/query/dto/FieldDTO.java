@@ -29,11 +29,15 @@ public class FieldDTO implements Interpretable {
         if (aggregation != null) {
             sb.append(aggregation)
                     .append("(");
+        } else if (alias != null) {
+            sb.append("(");
         }
         if (name != null) {
             sb.append(name);
         }
         if (aggregation != null) {
+            sb.append(")");
+        } else if (alias != null) {
             sb.append(")");
         }
         if (alias != null) {

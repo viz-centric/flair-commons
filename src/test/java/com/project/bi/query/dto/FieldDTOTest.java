@@ -13,6 +13,12 @@ public class FieldDTOTest {
     }
 
     @Test
+    public void interpretNoneAggregation() {
+        FieldDTO fieldDTO = new FieldDTO("orders", null, "ordersum");
+        assertEquals("(orders) as ordersum", fieldDTO.interpret());
+    }
+
+    @Test
     public void interpretNameAndAggregation() {
         FieldDTO fieldDTO = new FieldDTO("orders", "SUM");
         assertEquals("SUM(orders)", fieldDTO.interpret());
