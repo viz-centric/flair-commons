@@ -32,7 +32,7 @@ public class QueryDTO implements Interpretable {
     private boolean distinct;
     private List<SortDTO> orders = new ArrayList<>();
     private boolean metaRetrieved;
-    private Map<String, Object> metadata;
+    private Map<String, String> metadata;
 
     public QueryDTO() {
     }
