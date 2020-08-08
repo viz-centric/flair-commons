@@ -9,6 +9,7 @@ import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -31,6 +32,7 @@ public class QueryDTO implements Interpretable {
     private boolean distinct;
     private List<SortDTO> orders = new ArrayList<>();
     private boolean metaRetrieved;
+    private Map<String, Object> metadata;
 
     public QueryDTO() {
     }
