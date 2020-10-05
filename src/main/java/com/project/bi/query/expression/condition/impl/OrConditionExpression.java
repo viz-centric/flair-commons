@@ -7,6 +7,6 @@ public class OrConditionExpression extends CompositeConditionExpression {
 
     @Override
     public String interpret() {
-        return getFirstExpression().interpret() + " OR " + getSecondExpression().interpret();
+        return "(" + getFirstExpression().interpret() + " OR " + getSecondExpression().interpret() + ")";
     }
 }

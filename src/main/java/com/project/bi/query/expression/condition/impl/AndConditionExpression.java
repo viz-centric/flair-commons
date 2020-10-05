@@ -6,6 +6,6 @@ public class AndConditionExpression extends CompositeConditionExpression {
 
     @Override
     public String interpret() {
-        return getFirstExpression().interpret() + " AND " + getSecondExpression().interpret();
+        return "(" + getFirstExpression().interpret() + " AND " + getSecondExpression().interpret() + ")";
     }
 }
