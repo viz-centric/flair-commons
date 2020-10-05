@@ -92,7 +92,7 @@ public class HavingDTOTest {
                 )
         );
 
-        Assert.assertEquals("count(order_qty) > ((SELECT max(transactions_summary) as transactions_summary FROM ecommerce A WHERE order_date BETWEEN __FLAIR_INTERVAL_OPERATION(__FLAIR_NOW(), '-', '7000 days') AND __FLAIR_NOW() AND orders.order_count > __FLAIR_CAST(number, 24)) * 0.9 * 15)",
+        Assert.assertEquals("count(order_qty) > ((SELECT max(transactions_summary) as transactions_summary FROM ecommerce A WHERE (order_date BETWEEN __FLAIR_INTERVAL_OPERATION(__FLAIR_NOW(), '-', '7000 days') AND __FLAIR_NOW() AND orders.order_count > __FLAIR_CAST(number, 24))) * 0.9 * 15)",
                 havingDTO.interpret());
     }
 }

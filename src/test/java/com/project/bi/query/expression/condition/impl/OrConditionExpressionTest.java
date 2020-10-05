@@ -22,6 +22,6 @@ public class OrConditionExpressionTest {
 
         String result = expression.interpret();
 
-        assertEquals("feature_name1 NOT IN ('value1') OR feature_nam2 NOT IN ('value2')", result);
+        assertEquals("(feature_name1 NOT IN ('value1') OR feature_nam2 NOT IN ('value2'))", result);
     }
 }

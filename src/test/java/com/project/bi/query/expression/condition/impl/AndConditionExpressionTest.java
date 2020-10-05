@@ -21,6 +21,6 @@ public class AndConditionExpressionTest {
         expression.setSecondExpression(secondExpression);
 
         String result = expression.interpret();
-        assertEquals("book NOT IN ('value1','value2') AND author NOT IN ('value3','value3')", result);
+        assertEquals("(book NOT IN ('value1','value2') AND author NOT IN ('value3','value3'))", result);
     }
 }
