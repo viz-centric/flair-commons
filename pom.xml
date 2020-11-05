@@ -2,19 +2,22 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-     <parent>
+    <parent>
         <artifactId>spring-boot-starter-parent</artifactId>
         <groupId>org.springframework.boot</groupId>
         <version>1.5.4.RELEASE</version>
         <relativePath />
-    </parent> 
+    </parent>
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.release.plugin>2.5.3</maven.release.plugin>
         <maven.scm.provider.gitexe>1.9.5</maven.scm.provider.gitexe>
         <project.scm.id>github-credentials</project.scm.id>
+        <project.scm.url>https://${GIT_USER}:${GIT_PASSWORD}@github.com/viz-centric/flair-commons.git</project.scm.url>
         <maven.javadoc.skip>true</maven.javadoc.skip>
+        <aws-maven.version>5.0.0.RELEASE</aws-maven.version>
+        <bucket.name>vizcentric-mvn-repo</bucket.name>
     </properties>
     <groupId>com.project.bi</groupId>
     <artifactId>project-bi-common</artifactId>
@@ -22,37 +25,23 @@
     <description>Project that contains all common classes to project BI</description>
 
     <scm>
-        <connection>scm:git:https://${GIT_USER}:${GIT_PASSWORD}@github.com/viz-centric/flair-commons.git</connection>
-        <url>https://${GIT_USER}:${GIT_PASSWORD}@github.com/viz-centric/flair-commons.git</url>
-        <developerConnection>scm:git:https://${GIT_USER}:${GIT_PASSWORD}@github.com/viz-centric/flair-commons.git</developerConnection>
-        <tag>v1.3.19</tag>
+        <connection>scm:git:${project.scm.url}</connection>
+        <url>${project.scm.url}</url>
+        <developerConnection>scm:git:${project.scm.url}</developerConnection>
     </scm>
 
     <distributionManagement>
         <repository>
-            <id>dev-azure-com-vizcentric-flair-commons</id>
-            <url>https://pkgs.dev.azure.com/VizCentric/_packaging/flair-commons/maven/v1</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
+            <id>aws-release</id>
+            <name>AWS Release Repository</name>
+            <url>s3://${bucket.name}/release</url>
         </repository>
+        <snapshotRepository>
+            <id>aws-snapshot</id>
+            <name>AWS Snapshot Repository</name>
+            <url>s3://${bucket.name}/snapshot</url>
+        </snapshotRepository>
     </distributionManagement>
-
-    <repositories>
-        <repository>
-            <id>dev-azure-com-vizcentric-flair-commons</id>
-            <url>https://pkgs.dev.azure.com/VizCentric/_packaging/flair-commons/maven/v1</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
 
     <dependencies>
         <dependency>
@@ -99,8 +88,15 @@
         </dependency>
     </dependencies>
     <build>
+        <extensions>
+            <extension>
+                <groupId>org.springframework.build</groupId>
+                <artifactId>aws-maven</artifactId>
+                <version>${aws-maven.version}</version>
+            </extension>
+        </extensions>
         <plugins>
-        <plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
