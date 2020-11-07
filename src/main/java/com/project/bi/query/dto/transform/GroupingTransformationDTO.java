@@ -7,4 +7,5 @@ import lombok.Data;
 @Data
 public class GroupingTransformationDTO implements TransformationDTO {
     private FieldDTO groupingField;
+    private GroupType groupType;
 }
