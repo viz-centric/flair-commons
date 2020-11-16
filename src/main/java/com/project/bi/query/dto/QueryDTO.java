@@ -8,6 +8,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -25,6 +26,7 @@ public class QueryDTO implements Interpretable {
     private QuerySource querySource;
     private List<FieldDTO> fields = new ArrayList<>();
     private List<FieldDTO> groupBy = new ArrayList<>();
+    private List<TransformationDTO> transformations = new ArrayList<>();
     private Long limit;
     private Long offset;
     private List<HavingDTO> having = new ArrayList<>();
@@ -32,7 +34,7 @@ public class QueryDTO implements Interpretable {
     private boolean distinct;
     private List<SortDTO> orders = new ArrayList<>();
     private boolean metaRetrieved;
-    private Map<String, String> metadata;
+    private Map<String, String> metadata = new HashMap<>();
 
     public QueryDTO() {
     }
@@ -49,6 +51,8 @@ public class QueryDTO implements Interpretable {
         this.distinct = queryDTO.isDistinct();
         this.orders = new ArrayList<>(queryDTO.getOrders());
         this.metaRetrieved = queryDTO.isMetaRetrieved();
+        this.metadata = new HashMap<>(queryDTO.getMetadata());
+        this.transformations = new ArrayList<>(queryDTO.getTransformations());
     }
 
     private ConditionExpression mergeConditionExpression() {
