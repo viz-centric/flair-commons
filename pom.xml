@@ -21,14 +21,14 @@
     </properties>
     <groupId>com.project.bi</groupId>
     <artifactId>project-bi-common</artifactId>
-    <version>1.4.19-SNAPSHOT</version>
+    <version>1.4.19</version>
     <description>Project that contains all common classes to project BI</description>
 
     <scm>
         <connection>scm:git:${project.scm.url}</connection>
         <url>${project.scm.url}</url>
         <developerConnection>scm:git:${project.scm.url}</developerConnection>
-      <tag>HEAD</tag>
+      <tag>v1.4.19</tag>
   </scm>
 
     <distributionManagement>
