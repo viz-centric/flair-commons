@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import static com.project.bi.query.SQLUtil.sanitize;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -33,7 +35,7 @@ public class FieldDTO implements Interpretable {
             sb.append("(");
         }
         if (name != null) {
-            sb.append(name);
+            sb.append(sanitize(name));
         }
         if (aggregation != null) {
             sb.append(")");
@@ -42,7 +44,7 @@ public class FieldDTO implements Interpretable {
         }
         if (alias != null) {
             sb.append(" as ")
-                    .append(alias);
+                    .append(sanitize(alias));
         }
         return sb.toString();
     }

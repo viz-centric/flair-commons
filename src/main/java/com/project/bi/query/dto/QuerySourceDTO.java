@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import static com.project.bi.query.SQLUtil.backquotes;
 import static com.project.bi.query.SQLUtil.sanitize;
 
 @Data
@@ -19,6 +20,6 @@ public class QuerySourceDTO implements QuerySource {
 
     @Override
     public String interpret() {
-        return sanitize(source) + (alias == null ? "" : " " + sanitize(alias));
+        return backquotes(sanitize(source)) + (alias == null ? "" : " " + backquotes(sanitize(alias)));
     }
 }

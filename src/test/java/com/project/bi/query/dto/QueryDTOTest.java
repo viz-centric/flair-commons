@@ -24,7 +24,7 @@ public class QueryDTOTest {
     @Test
     public void interpretAll() {
         QueryDTO queryDTO = new QueryDTO();
-        queryDTO.setQuerySource(new QuerySourceDTO("tablename", null));
+        queryDTO.setQuerySource(new QuerySourceDTO("table-name", null));
         queryDTO.setDistinct(true);
         queryDTO.setLimit(10L);
         queryDTO.setOffset(53L);
@@ -63,7 +63,7 @@ public class QueryDTOTest {
         queryDTO.setConditionExpressions(Arrays.asList(conditionExpressionDTO));
 
         String result = queryDTO.interpret();
-        assertEquals("SELECT DISTINCT COUNT(book) as bookcount,SUM(author) FROM tablename WHERE (date LIKE '%2019-01-%' AND date NOT IN ('2019-01-10','2019-01-11')) GROUP BY SUM(mygroup1),mygroup2 HAVING mycolumn > 500 AND COUNT(mycolumn2) < 'test' ORDER BY SUM(book) DESC LIMIT 10 OFFSET 53", result);
+        assertEquals("SELECT DISTINCT COUNT(book) as bookcount,SUM(author) FROM `table-name` WHERE (date LIKE '%2019-01-%' AND date NOT IN ('2019-01-10','2019-01-11')) GROUP BY SUM(mygroup1),mygroup2 HAVING mycolumn > 500 AND COUNT(mycolumn2) < 'test' ORDER BY SUM(book) DESC LIMIT 10 OFFSET 53", result);
     }
 
     @Test

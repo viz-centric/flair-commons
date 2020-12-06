@@ -70,6 +70,13 @@ public class SQLUtil {
 
     }
 
+    public static String backquotes(String string) {
+        if (string.contains("-")) {
+            return "`" + string + "`";
+        }
+        return string;
+    }
+
     public static String sanitize(String string) {
         if (string == null) {
             return null;
