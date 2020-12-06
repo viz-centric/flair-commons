@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static com.project.bi.query.SQLUtil.backquotes;
+
 /**
  * Data transfer object that used to transfer query data between flair-bi and fbiengine
  */
@@ -138,7 +140,7 @@ public class QueryDTO implements Interpretable {
         if (querySource != null) {
             return querySource.interpret();
         }
-        return source;
+        return backquotes(source);
     }
 
 
