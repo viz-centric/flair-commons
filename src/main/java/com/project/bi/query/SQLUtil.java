@@ -71,7 +71,7 @@ public class SQLUtil {
     }
 
     public static String backquotes(String string) {
-        if (string.contains("-")) {
+        if (string != null && string.contains("-")) {
             return "`" + string + "`";
         }
         return string;
